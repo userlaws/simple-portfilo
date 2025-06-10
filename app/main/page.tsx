@@ -72,6 +72,14 @@ export default function MainPage() {
                 <p className="break-words justify-center">SpendWise helps you track expenses, set budgets, and achieve your financial goals with intuitive tools and insightful analytics.</p>
               </div>
               <div className="text-center">
+                <a href="https://spend-wise-vert.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-lg font-semibold hover:underline flex justify-center items-center">
+                  <span>Gift Whisperer</span>
+                  <LinkIcon className="ml-2 h-5 w-5" />
+                </a>
+                <p className="break-words justify-center">The anonymous gift exchange platform for friends and family. Create wishlists, claim gifts, and keep the surprise alive this holiday season, or any season !</p>
+              </div>
+                <a href="https://christmas-list-peach.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-lg font-semibold hover:underline flex justify-center items-center">
+              <div className="text-center">
                 <a href="https://github.com/userlaws/Discord-VC-Leaderboard" target="_blank" rel="noopener noreferrer" className="text-lg font-semibold hover:underline flex justify-center items-center">
                   <span>Discord VC Leaderboard</span>
                   <LinkIcon className="ml-2 h-5 w-5" />
