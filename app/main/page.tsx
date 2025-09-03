@@ -46,6 +46,17 @@ export default function MainPage() {
               started coding bots for discord and that was the start of my
               coding journey.
             </p>
+            <div className='mt-4'>
+              <a
+                href='https://github.com/userlaws'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center text-lg font-semibold hover:underline text-blue-600 hover:text-blue-800'
+              >
+                <span>GitHub</span>
+                <LinkIcon className='ml-2 h-5 w-5' />
+              </a>
+            </div>
           </div>
 
           {/* Skills Section */}
@@ -68,30 +79,17 @@ export default function MainPage() {
             <div className='space-y-4'>
               <div className='text-center'>
                 <a
-                  href='https://iaresume.org/'
+                  href='https://noteshare.us'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='text-lg font-semibold hover:underline flex justify-center items-center'
                 >
-                  <span>Personal Portfolio</span>
+                  <span>NoteShare</span>
                   <LinkIcon className='ml-2 h-5 w-5' />
                 </a>
-                <p>This is my official portfolio site.</p>
-              </div>
-              <div className='text-center'>
-                <a
-                  href='https://spend-wise-vert.vercel.app/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-lg font-semibold hover:underline flex justify-center items-center'
-                >
-                  <span>SpendWise</span>
-                  <LinkIcon className='ml-2 h-5 w-5' />
-                </a>
-                <p className='break-words justify-center'>
-                  SpendWise helps you track expenses, set budgets, and achieve
-                  your financial goals with intuitive tools and insightful
-                  analytics.
+                <p>
+                  This is my project that I made for myself to learn. It&apos;s
+                  a website that allows you to share notes with your friends.
                 </p>
               </div>
               <div className='text-center'>
@@ -112,6 +110,18 @@ export default function MainPage() {
               </div>
               <div className='text-center'>
                 <a
+                  href='https://iaresume.org/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-lg font-semibold hover:underline flex justify-center items-center'
+                >
+                  <span>Personal Portfolio</span>
+                  <LinkIcon className='ml-2 h-5 w-5' />
+                </a>
+                <p>This is my official portfolio site.</p>
+              </div>
+              <div className='text-center'>
+                <a
                   href='https://github.com/userlaws/Discord-VC-Leaderboard'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -125,21 +135,6 @@ export default function MainPage() {
                   voice channels, including total time spent, muted time, and
                   deafened time. The bot posts and updates a leaderboard on a
                   Discord channel using webhooks.
-                </p>
-              </div>
-              <div className='text-center'>
-                <a
-                  href='https://noteshare.us'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-lg font-semibold hover:underline flex justify-center items-center'
-                >
-                  <span>NoteShare</span>
-                  <LinkIcon className='ml-2 h-5 w-5' />
-                </a>
-                <p>
-                  This is my project that I made for myself to learn. It&apos;s
-                  a website that allows you to share notes with your friends.
                 </p>
               </div>
             </div>
