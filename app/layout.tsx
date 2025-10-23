@@ -23,6 +23,20 @@ export const metadata: Metadata = {
   description:
     'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
   generator: 'v0.app',
+  openGraph: {
+    title: 'Backend & Full-Stack Engineer | NYC',
+    description:
+      'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
+    images: ['/metadata.png'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Backend & Full-Stack Engineer | NYC',
+    description:
+      'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
+    images: ['/metadata.png'],
+  },
 };
 
 export default function RootLayout({

@@ -36,6 +36,7 @@ export function Navigation() {
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down & past threshold - hide header
         setIsHeaderVisible(false);
+        setIsMobileMenuOpen(false); // Reset mobile menu when hiding header
       } else if (currentScrollY < lastScrollY) {
         // Scrolling up - show header
         setIsHeaderVisible(true);
@@ -137,6 +138,7 @@ export function Navigation() {
     // Swipe down gesture - hide header on mobile
     if (isMobile && distance < -50 && window.scrollY > 50) {
       setIsHeaderVisible(false);
+      setIsMobileMenuOpen(false); // Reset mobile menu when hiding header
     }
   };
 
@@ -157,7 +159,10 @@ export function Navigation() {
         } flex items-center justify-between`}
       >
         {/* Logo Section */}
-        <div className='flex items-center space-x-3'>
+        <a
+          href='/'
+          className='flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200'
+        >
           <div
             className={`${
               isScrolled ? 'w-6 h-6' : 'w-8 h-8'
@@ -178,7 +183,7 @@ export function Navigation() {
           >
             {t('portfolio')}
           </span>
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className='hidden md:flex items-center space-x-8'>

@@ -3,12 +3,30 @@
 import { Navigation } from '@/components/navigation';
 import { ProjectCard } from '@/components/project-card';
 import { useLanguage } from '@/contexts/language-context';
+import { useTheme } from '@/contexts/theme-context';
+import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
 
 export default function ProjectsPage() {
   const { t } = useLanguage();
+  const { theme, setTheme } = useTheme();
+
+  const handleCancelParty = () => {
+    setTheme('light');
+  };
 
   return (
     <main className='min-h-screen'>
+      {theme === 'party' && (
+        <Button
+          onClick={handleCancelParty}
+          className='fixed top-4 right-4 z-50 bg-red-500 hover:bg-red-600 text-white shadow-lg animate-pulse'
+          size='sm'
+        >
+          <X className='h-4 w-4 mr-2' />
+          Cancel Party
+        </Button>
+      )}
       <Navigation />
       <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 max-w-5xl'>
         <div className='space-y-6 sm:space-y-8'>

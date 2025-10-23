@@ -4,7 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import { Navigation } from '@/components/navigation';
 import { NoteCard } from '@/components/note-card';
 import { useLanguage } from '@/contexts/language-context';
-import { Filter, ChevronDown } from 'lucide-react';
+import { useTheme } from '@/contexts/theme-context';
+import { Button } from '@/components/ui/button';
+import { Filter, ChevronDown, X } from 'lucide-react';
 
 const notes = [
   // Backend & Data
@@ -306,7 +308,12 @@ function CategoryDropdown({
 
 export default function NotesPage() {
   const { t } = useLanguage();
+  const { theme, setTheme } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const handleCancelParty = () => {
+    setTheme('light');
+  };
 
   const filteredNotes =
     selectedCategory === 'All'
@@ -315,6 +322,16 @@ export default function NotesPage() {
 
   return (
     <main className='min-h-screen'>
+      {theme === 'party' && (
+        <Button
+          onClick={handleCancelParty}
+          className='fixed top-4 right-4 z-50 bg-red-500 hover:bg-red-600 text-white shadow-lg animate-pulse'
+          size='sm'
+        >
+          <X className='h-4 w-4 mr-2' />
+          Cancel Party
+        </Button>
+      )}
       <Navigation />
       <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 max-w-4xl'>
         <div className='space-y-6 sm:space-y-8'>
