@@ -177,11 +177,11 @@ export function SkillsSection() {
           </div>
         </div>
 
-        {/* Focus Areas */}
+        {/* Security */}
         <div className='space-y-4'>
           <h3 className='font-semibold text-lg flex items-center gap-2'>
             <span className='text-2xl'>🔒</span>
-            {t('focusAreas')}
+            {t('security')}
           </h3>
           <div className='flex flex-wrap gap-2'>
             {renderSkillChips('focusAreas')}

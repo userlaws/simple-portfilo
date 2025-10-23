@@ -95,7 +95,7 @@ export const translations = {
     tools: 'Tools',
     toolsValue:
       'Git, GitHub Actions, Docker, VS Code, Figma, Adobe Photoshop, Adobe Premiere',
-    focusAreas: 'Focus Areas',
+    security: 'Security',
     focusAreasValue:
       'SSH, Metasploit, tcpdump, OpenSSL, Network Hardening, OAuth, MFA, Row Level Security',
     experience: 'Experience',
@@ -253,7 +253,7 @@ export const translations = {
     tools: 'Herramientas',
     toolsValue:
       'Git, GitHub Actions, Docker, VS Code, Figma, Adobe Photoshop, Adobe Premiere',
-    focusAreas: 'Áreas de Enfoque',
+    security: 'Seguridad',
     focusAreasValue:
       'SSH, Metasploit, tcpdump, OpenSSL, Endurecimiento de Red, OAuth, MFA, Seguridad a Nivel de Fila',
     experience: 'Experiencia',
