@@ -1,0 +1,580 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Ensure proper text rendering for accented characters */
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure proper line height for titles with accented characters */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  overflow: visible;
+}
+
+/* Prevent text clipping */
+.text-3xl,
+.text-4xl,
+.text-5xl {
+  line-height: 1.1;
+  overflow: visible;
+}
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
+@custom-variant party (&:is(.party *));
+
+/* Light mode with crisp design system */
+:root {
+  --background: #f2f2f2; /* Custom light gray */
+  --foreground: #0f172a; /* slate-900 */
+  --card: #ffffff; /* surface */
+  --card-foreground: #0f172a; /* slate-900 */
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #0f172a; /* slate-900 */
+  --primary-foreground: #f8fafc;
+  --secondary: #f1f5f9; /* slate-100 */
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9; /* slate-100 */
+  --muted-foreground: #334155; /* slate-700 */
+  --accent: #2563eb; /* blue-600 */
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0; /* slate-200 */
+  --input: #f1f5f9; /* slate-100 */
+  --ring: #2563eb; /* blue-600 */
+  --chart-1: #2563eb; /* blue-600 */
+  --chart-2: #059669; /* emerald-600 */
+  --chart-3: #d97706; /* amber-600 */
+  --chart-4: #8b5cf6;
+  --chart-5: #dc2626;
+  --radius: 0.75rem; /* rounded-2xl */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #2563eb;
+}
+
+/* Dark mode with graphite palette */
+.dark {
+  --background: #111; /* graphite */
+  --foreground: #fafafa; /* off-white */
+  --card: #1a1a1a; /* darker graphite */
+  --card-foreground: #fafafa;
+  --popover: #1a1a1a;
+  --popover-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #111;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #fafafa;
+  --muted: #1a1a1a;
+  --muted-foreground: #a3a3a3;
+  --accent: #3b82f6; /* accent blue */
+  --accent-foreground: #fafafa;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --border: #262626;
+  --input: #1a1a1a;
+  --ring: #3b82f6;
+  --chart-1: #3b82f6; /* accent blue */
+  --chart-2: #10b981; /* success green */
+  --chart-3: #f59e0b;
+  --chart-4: #8b5cf6;
+  --chart-5: #ef4444;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #262626;
+  --sidebar-ring: #3b82f6;
+}
+
+/* Enhanced party mode with cleaner, more sophisticated effects */
+.party {
+  --background: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 25%,
+    #f093fb 50%,
+    #f5576c 75%,
+    #4facfe 100%
+  );
+  --foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.1);
+  --card-foreground: #ffffff;
+  --popover: rgba(255, 255, 255, 0.15);
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #667eea;
+  --secondary: rgba(255, 255, 255, 0.2);
+  --secondary-foreground: #ffffff;
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: rgba(255, 255, 255, 0.8);
+  --accent: #ff6b6b;
+  --accent-foreground: #ffffff;
+  --destructive: #ff4757;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.2);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #ff6b6b;
+
+  animation: party-gradient 8s ease infinite;
+  background-size: 300% 300%;
+  position: relative;
+  overflow: hidden;
+}
+
+.party::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 107, 107, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(102, 126, 234, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 80%,
+      rgba(240, 147, 251, 0.3) 0%,
+      transparent 50%
+    );
+  animation: party-shimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes party-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes party-shimmer {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Subtle floating animation for party mode elements */
+.party * {
+  animation: party-float 4s ease-in-out infinite;
+}
+
+@keyframes party-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Enhanced text effects for party mode */
+.party h1,
+.party h2,
+.party h3,
+.party h4,
+.party h5,
+.party h6 {
+  background: linear-gradient(
+    45deg,
+    #ff6b6b,
+    #4ecdc4,
+    #45b7d1,
+    #96ceb4,
+    #feca57,
+    #ff9ff3
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: party-text-shift 4s ease infinite;
+  text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+}
+
+@keyframes party-text-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced button and link effects */
+.party button,
+.party a,
+.party [role='button'] {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: party-glow 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.party button:hover,
+.party a:hover,
+.party [role='button']:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+@keyframes party-glow {
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(76, 201, 240, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Card effects for party mode */
+.party .card,
+.party [class*='card'] {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: party-card-float 5s ease-in-out infinite;
+}
+
+@keyframes party-card-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(0.5deg);
+  }
+}
+
+/* Navigation effects */
+.party nav,
+.party header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle particle effect */
+.party::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      2px 2px at 20px 30px,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    ),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 107, 107, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(76, 201, 240, 0.3), transparent),
+    radial-gradient(
+      1px 1px at 130px 80px,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  animation: party-particles 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes party-particles {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-150px);
+  }
+}
+
+/* Added JetBrains Mono for code/metrics */
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', 'Courier New',
+    monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  /* Simple, instant theme transitions */
+  html,
+  body {
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  /* Font family assignments */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  }
+
+  /* Typography System */
+  h1 {
+    @apply text-[34px] leading-[40px] font-bold tracking-[-0.01em];
+  }
+
+  h2 {
+    @apply text-[24px] leading-[32px] font-bold tracking-[-0.01em];
+  }
+
+  h3 {
+    @apply text-[18px] leading-[28px] font-semibold;
+  }
+
+  p {
+    @apply text-[16px] leading-[26px] font-normal;
+  }
+
+  small {
+    @apply text-[14px] leading-[22px] font-normal;
+  }
+
+  /* Code styling */
+  code {
+    @apply bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  pre {
+    @apply bg-slate-100 text-slate-900 p-4 rounded-lg text-sm font-mono overflow-x-auto;
+  }
+
+  /* Card styling */
+  .card {
+    @apply p-6 md:p-7 rounded-2xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  /* Layout improvements */
+  .container {
+    @apply max-w-[1120px] mx-auto px-6 md:px-8;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Force light gray background for light mode */
+  .light body {
+    background-color: #f2f2f2 !important;
+  }
+
+  .light {
+    background-color: #f2f2f2 !important;
+  }
+
+  /* Force graphite background for dark mode */
+  .dark body {
+    background-color: #111 !important;
+  }
+
+  .dark {
+    background-color: #111 !important;
+  }
+
+  /* Ensure all main content uses light gray background */
+  .light main,
+  .light section,
+  .light div {
+    background-color: #f2f2f2;
+  }
+
+  /* Override any other backgrounds for light mode */
+  .light * {
+    background-color: inherit;
+  }
+
+  /* Specific targeting for main page elements */
+  .light main {
+    background-color: #f2f2f2 !important;
+  }
+
+  .light .min-h-screen {
+    background-color: #f2f2f2 !important;
+  }
+
+  /* Force light gray on all sections */
+  .light section {
+    background-color: #f2f2f2 !important;
+  }
+
+  /* Ensure all main content uses graphite background */
+  .dark main,
+  .dark section,
+  .dark div {
+    background-color: #111;
+  }
+
+  /* Override any black backgrounds */
+  .dark * {
+    background-color: inherit;
+  }
+
+  /* Specific targeting for main page elements */
+  .dark main {
+    background-color: #111 !important;
+  }
+
+  .dark .min-h-screen {
+    background-color: #111 !important;
+  }
+
+  /* Force graphite on all sections */
+  .dark section {
+    background-color: #111 !important;
+  }
+
+  /* Mobile-first touch improvements */
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    scroll-behavior: smooth;
+  }
+
+  /* Allow text selection in content areas */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  div[role='text'] {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  /* Better touch targets */
+  button,
+  a,
+  [role='button'] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent zoom on input focus on iOS */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
