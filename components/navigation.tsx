@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Sun, Moon, PartyPopper, Languages } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/contexts/theme-context';
@@ -11,32 +11,36 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [touchStartY, setTouchStartY] = useState(0);
-  const [touchEndY, setTouchEndY] = useState(0);
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const headerRef = useRef<HTMLElement>(null);
 
+  // Scroll handling - hide/show header on mobile
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const isMobile = window.innerWidth < 768; // md breakpoint
+      const isMobile = window.innerWidth < 768;
 
       // Set scrolled state for desktop bubble effect
       setIsScrolled(currentScrollY > 50);
 
       if (!isMobile) {
-        // Desktop: always show header, just style changes
+        // Desktop: always show header
         setIsHeaderVisible(true);
         return;
       }
 
-      // Mobile: hide/show logic
+      // Mobile: hide/show logic (but not when menu is open)
+      if (isMobileMenuOpen) {
+        // Don't hide header when menu is open
+        return;
+      }
+
       if (currentScrollY < 10) {
         setIsHeaderVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down & past threshold - hide header
         setIsHeaderVisible(false);
-        setIsMobileMenuOpen(false); // Reset mobile menu when hiding header
       } else if (currentScrollY < lastScrollY) {
         // Scrolling up - show header
         setIsHeaderVisible(true);
@@ -47,61 +51,27 @@ export function Navigation() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isMobileMenuOpen]);
 
-  // Touch gesture detection for mobile
+  // Click outside to close menu
   useEffect(() => {
-    const handleTouchStart = (e: TouchEvent) => {
-      setTouchStartY(e.targetTouches[0].clientY);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      setTouchEndY(e.targetTouches[0].clientY);
-    };
-
-    const handleTouchEnd = () => {
-      if (!touchStartY || !touchEndY) return;
-
-      const distance = touchStartY - touchEndY;
-      const isMobile = window.innerWidth < 768;
-
-      // Swipe down gesture - hide header on mobile
-      if (isMobile && distance < -50 && window.scrollY > 50) {
-        setIsHeaderVisible(false);
-      }
-    };
-
-    // Tap outside detection
     const handleClickOutside = (e: MouseEvent) => {
-      const isMobile = window.innerWidth < 768;
-      if (isMobile && isMobileMenuOpen) {
-        const target = e.target as Element;
-        if (!target.closest('header')) {
+      if (isMobileMenuOpen && headerRef.current) {
+        const target = e.target as Node;
+        if (!headerRef.current.contains(target)) {
           setIsMobileMenuOpen(false);
         }
       }
     };
 
-    if (typeof window !== 'undefined') {
-      document.addEventListener('touchstart', handleTouchStart, {
-        passive: true,
-      });
-      document.addEventListener('touchmove', handleTouchMove, {
-        passive: true,
-      });
-      document.addEventListener('touchend', handleTouchEnd, { passive: true });
-      document.addEventListener('click', handleClickOutside);
-    }
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside as any);
 
     return () => {
-      if (typeof window !== 'undefined') {
-        document.removeEventListener('touchstart', handleTouchStart);
-        document.removeEventListener('touchmove', handleTouchMove);
-        document.removeEventListener('touchend', handleTouchEnd);
-        document.removeEventListener('click', handleClickOutside);
-      }
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside as any);
     };
-  }, [touchStartY, touchEndY, isMobileMenuOpen]);
+  }, [isMobileMenuOpen]);
 
   const navLinks = [
     { href: '/', label: t('home') },
@@ -121,35 +91,16 @@ export function Navigation() {
     setLanguage(language === 'en' ? 'es' : 'en');
   };
 
-  const handleHeaderTouchStart = (e: React.TouchEvent) => {
-    setTouchStartY(e.touches[0].clientY);
-  };
-
-  const handleHeaderTouchMove = (e: React.TouchEvent) => {
-    setTouchEndY(e.touches[0].clientY);
-  };
-
-  const handleHeaderTouchEnd = () => {
-    if (!touchStartY || !touchEndY) return;
-
-    const distance = touchStartY - touchEndY;
-    const isMobile = window.innerWidth < 768;
-
-    // Swipe down gesture - hide header on mobile
-    if (isMobile && distance < -50 && window.scrollY > 50) {
-      setIsHeaderVisible(false);
-      setIsMobileMenuOpen(false); // Reset mobile menu when hiding header
-    }
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
     <header
+      ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       } ${isScrolled ? 'bg-transparent' : 'bg-background shadow-sm'}`}
-      onTouchStart={handleHeaderTouchStart}
-      onTouchMove={handleHeaderTouchMove}
-      onTouchEnd={handleHeaderTouchEnd}
     >
       <div
         className={`transition-all duration-300 ease-in-out ${
@@ -242,8 +193,9 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             className='md:hidden text-foreground transition-all duration-200 hover:text-primary hover:scale-105 active:scale-95 p-2 rounded-xl hover:bg-muted/50'
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={handleMobileMenuToggle}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            type='button'
           >
             <div className='relative w-6 h-6'>
               <Menu
