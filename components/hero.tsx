@@ -42,7 +42,7 @@ export function Hero() {
                     href='https://github.com/userlaws'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2 transition-colors'
+                    className='text-primary hover:text-primary/80 font-semibold flex items-center gap-2 transition-colors'
                   >
                     GitHub
                     <svg

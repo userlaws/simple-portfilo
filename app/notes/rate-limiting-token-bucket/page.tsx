@@ -7,10 +7,10 @@ export default function RateLimitingPage() {
       <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 max-w-4xl'>
         <div className='space-y-6 sm:space-y-8'>
           <div className='text-center sm:text-left py-2'>
-            <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight break-words min-h-[1.2em] overflow-visible pb-1'>
+            <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight wrap-break-word min-h-[1.2em] overflow-visible pb-1'>
               Rate limiting 101: token bucket in 25 lines
             </h1>
-            <p className='text-lg sm:text-xl text-muted-foreground max-w-3xl break-words leading-relaxed'>
+            <p className='text-lg sm:text-xl text-muted-foreground max-w-3xl wrap-break-word leading-relaxed'>
               TS implementation + where to enforce (edge vs app). Token math,
               burst vs steady-state, global vs per-user keys, testing with fake
               timers.
@@ -90,7 +90,7 @@ export default function RateLimitingPage() {
               <li>
                 <a
                   href='https://en.wikipedia.org/wiki/Token_bucket'
-                  className='text-blue-600 hover:text-blue-700'
+                  className='text-primary hover:text-primary/80'
                 >
                   Token Bucket Algorithm
                 </a>
@@ -98,7 +98,7 @@ export default function RateLimitingPage() {
               <li>
                 <a
                   href='https://redis.io/docs/manual/rate-limiting/'
-                  className='text-blue-600 hover:text-blue-700'
+                  className='text-primary hover:text-primary/80'
                 >
                   Redis Rate Limiting
                 </a>
