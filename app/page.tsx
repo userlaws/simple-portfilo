@@ -95,7 +95,7 @@ export default function Home() {
       )}
       <Navigation />
       <Hero />
-      <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 max-w-5xl'>
+      <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12 max-w-5xl'>
         <SkillsSection />
       </div>
       <WhatIDo />

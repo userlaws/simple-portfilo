@@ -7,7 +7,7 @@ export function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className='min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 pt-20 pb-8'>
+    <section className='flex items-center justify-center px-4 sm:px-6 lg:px-12 pt-20 pb-8 sm:pb-12'>
       <div className='max-w-5xl w-full'>
         <div className='space-y-6 sm:space-y-8'>
           <div className='flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6'>
@@ -36,8 +36,11 @@ export function Hero() {
                   start of my coding journey.
                 </p>
 
-                {/* GitHub Link */}
-                <div className='flex items-center justify-center sm:justify-start gap-2'>
+                {/* GitHub Link and Button */}
+                <div className='flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4'>
+                  <Button size='lg' asChild className='w-full sm:w-auto'>
+                    <a href='/projects'>{t('viewMyProjects')}</a>
+                  </Button>
                   <a
                     href='https://github.com/userlaws'
                     target='_blank'
@@ -60,20 +63,6 @@ export function Hero() {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto'>
-            <Button size='lg' asChild className='w-full sm:w-auto'>
-              <a href='/projects'>{t('viewMyProjects')}</a>
-            </Button>
-            <Button
-              size='lg'
-              variant='outline'
-              asChild
-              className='w-full sm:w-auto'
-            >
-              <a href='/resume'>{t('downloadResume')}</a>
-            </Button>
           </div>
         </div>
       </div>

@@ -140,10 +140,10 @@ export function SkillsSection() {
   };
 
   return (
-    <section className='space-y-8'>
-      <h2 className='text-xl sm:text-2xl font-bold mb-6'>{t('skills')}</h2>
+    <section className='space-y-6'>
+      <h2 className='text-xl sm:text-2xl font-bold mb-4'>{t('skills')}</h2>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
         {/* Languages */}
         <div className='space-y-4'>
           <h3 className='font-semibold text-lg flex items-center gap-2'>

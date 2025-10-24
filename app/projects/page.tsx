@@ -138,6 +138,13 @@ export default function ProjectsPage() {
               description='A modern portfolio site built using Once UI framework. Features a sleek design with advanced UI components and smooth animations.'
               href='https://iaresume.org/'
             />
+
+            <ProjectCard
+              title='Discord VC Leaderboard'
+              tags={['Discord.js', 'Node.js', 'JavaScript', 'Bot']}
+              description='A Discord bot that tracks voice channel activity and creates leaderboards. Features real-time tracking, weekly/monthly rankings, and customizable settings for server administrators.'
+              href='#'
+            />
           </div>
         </div>
       </div>
