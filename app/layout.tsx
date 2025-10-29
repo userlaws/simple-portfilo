@@ -19,10 +19,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Backend & Full-Stack Engineer | NYC',
+  title: 'I see you ( i dont :)',
   description:
     'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
-  generator: 'v0.app',
+  generator: 'imanol-aracena.dev',
   openGraph: {
     title: 'Backend & Full-Stack Engineer | NYC',
     description:
