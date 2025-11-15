@@ -13,12 +13,14 @@ const getSql = () => {
   return sqlInstance;
 };
 
-// Export sql for backward compatibility, but it will only be created when used
-export const sql = new Proxy({} as ReturnType<typeof neon>, {
-  get(_target, prop) {
-    return getSql()[prop as keyof ReturnType<typeof neon>];
-  },
-});
+// Export sql as a tagged template function
+// This allows template literal usage: sql`SELECT * FROM ...`
+const sqlFunction = (strings: TemplateStringsArray, ...values: any[]) => {
+  return getSql()(strings, ...values);
+};
+
+// Make it work as both a function and preserve any properties
+export const sql = sqlFunction as ReturnType<typeof neon>;
 
 // Blog post type
 export interface BlogPost {

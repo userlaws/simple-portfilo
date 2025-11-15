@@ -9,10 +9,21 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  const posts = await db.getAllPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  try {
+    // Only generate params if DATABASE_URL is available
+    if (!process.env.DATABASE_URL) {
+      return [];
+    }
+    const posts = await db.getAllPosts();
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    // If database is not available during build, return empty array
+    // Posts will be generated on-demand
+    console.warn('Could not generate static params during build:', error);
+    return [];
+  }
 }
 
 export default async function BlogPostPage({
