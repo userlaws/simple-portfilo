@@ -1,11 +1,24 @@
 import { neon } from '@neondatabase/serverless';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL environment variable is not set');
-}
+// Lazy initialization - only create connection when needed
+let sqlInstance: ReturnType<typeof neon> | null = null;
 
-// Create a connection to Neon
-export const sql = neon(process.env.DATABASE_URL);
+const getSql = () => {
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL environment variable is not set');
+  }
+  if (!sqlInstance) {
+    sqlInstance = neon(process.env.DATABASE_URL);
+  }
+  return sqlInstance;
+};
+
+// Export sql for backward compatibility, but it will only be created when used
+export const sql = new Proxy({} as ReturnType<typeof neon>, {
+  get(_target, prop) {
+    return getSql()[prop as keyof ReturnType<typeof neon>];
+  },
+});
 
 // Blog post type
 export interface BlogPost {
