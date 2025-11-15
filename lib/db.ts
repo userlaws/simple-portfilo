@@ -13,14 +13,24 @@ const getSql = () => {
   return sqlInstance;
 };
 
-// Export sql as a tagged template function
+// Export sql as a tagged template function using Proxy
 // This allows template literal usage: sql`SELECT * FROM ...`
-const sqlFunction = (strings: TemplateStringsArray, ...values: any[]) => {
-  return getSql()(strings, ...values);
-};
-
-// Make it work as both a function and preserve any properties
-export const sql = sqlFunction as ReturnType<typeof neon>;
+// The Proxy ensures the function is callable while deferring initialization
+export const sql = new Proxy(
+  function (strings: TemplateStringsArray, ...values: any[]) {
+    return getSql()(strings, ...values);
+  } as any,
+  {
+    apply(_target, _thisArg, args) {
+      // Handle function call: sql`SELECT ...`
+      return getSql()(args[0] as TemplateStringsArray, ...args.slice(1));
+    },
+    get(_target, prop) {
+      // Handle property access if needed
+      return (getSql() as any)[prop];
+    },
+  }
+) as ReturnType<typeof neon>;
 
 // Blog post type
 export interface BlogPost {
