@@ -26,5 +26,27 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# discord bot
-discord-bot
+# Discord bot - ignore sensitive files but keep code
+discord-bot/.env
+discord-bot/.env.local
+discord-bot/node_modules/
+discord-bot/dist/
+discord-bot/*.log
+
+# Setup docs with secrets (or remove secrets from it)
+DISCORD-BLOG-SETUP.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
