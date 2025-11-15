@@ -3,7 +3,7 @@ export const translations = {
     // Navigation
     home: 'Home',
     projects: 'Projects',
-    notes: 'Notes',
+    blog: 'Blog',
     portfolio: 'Portfolio',
 
     // Hero
@@ -60,16 +60,16 @@ export const translations = {
     projectSecurityLabsDesc:
       'Selected security labs demonstrating network analysis, exploit validation, and cryptographic implementations.',
 
-    // Notes Page
-    notesTitle: 'Notes',
-    notesSubtitle:
-      'Short, helpful posts on backend development, data quality, and reliability.',
+    // Blog Page
+    blogTitle: 'Blog',
+    blogSubtitle:
+      'Technical blog posts on backend development, data quality, and reliability.',
     technicalNotes: 'Technical Notes',
     showingNotes: 'Showing',
-    note: 'note',
-    notePlural: 'notes',
+    note: 'post',
+    notePlural: 'posts',
     clearFilter: 'Clear filter',
-    noNotesFound: 'No notes found in the selected category.',
+    noNotesFound: 'No posts found in the selected category.',
     rateLimitingTitle: 'Rate limiting 101: token bucket in 25 lines',
     rateLimitingDesc:
       'A simple TypeScript implementation of token bucket rate limiting.',
@@ -159,7 +159,7 @@ export const translations = {
     // Navigation
     home: 'Inicio',
     projects: 'Proyectos',
-    notes: 'Notas',
+    blog: 'Blog',
     portfolio: 'Portafolio',
 
     // Hero
@@ -216,16 +216,16 @@ export const translations = {
     projectSecurityLabsDesc:
       'Laboratorios de seguridad seleccionados que demuestran análisis de red, validación de exploits e implementaciones criptográficas.',
 
-    // Notes Page
-    notesTitle: 'Notas',
-    notesSubtitle:
-      'Publicaciones cortas y útiles sobre desarrollo backend, calidad de datos y confiabilidad.',
+    // Blog Page
+    blogTitle: 'Blog',
+    blogSubtitle:
+      'Publicaciones técnicas sobre desarrollo backend, calidad de datos y confiabilidad.',
     technicalNotes: 'Notas Técnicas',
     showingNotes: 'Mostrando',
-    note: 'nota',
-    notePlural: 'notas',
+    note: 'publicación',
+    notePlural: 'publicaciones',
     clearFilter: 'Limpiar filtro',
-    noNotesFound: 'No se encontraron notas en la categoría seleccionada.',
+    noNotesFound: 'No se encontraron publicaciones en la categoría seleccionada.',
     rateLimitingTitle: 'Limitación de velocidad 101: token bucket en 25 líneas',
     rateLimitingDesc:
       'Una implementación simple en TypeScript de limitación de velocidad con token bucket.',

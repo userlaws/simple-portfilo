@@ -76,7 +76,7 @@ export function Navigation() {
   const navLinks = [
     { href: '/', label: t('home') },
     { href: '/projects', label: t('projects') },
-    { href: '/notes', label: t('notes') },
+    { href: '/blog', label: t('blog') },
   ];
 
   const toggleTheme = () => {

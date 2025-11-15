@@ -598,3 +598,55 @@ h6 {
     transform: translate(-50%, -50%);
   }
 }
+
+/* Syntax highlighting for code blocks */
+.prose pre {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.prose code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.dark .prose code {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.prose pre .hljs-keyword,
+.prose pre .hljs-selector-tag,
+.prose pre .hljs-built_in,
+.prose pre .hljs-name {
+  color: #c792ea;
+}
+
+.prose pre .hljs-string,
+.prose pre .hljs-attr {
+  color: #c3e88d;
+}
+
+.prose pre .hljs-comment {
+  color: #546e7a;
+  font-style: italic;
+}
+
+.prose pre .hljs-number,
+.prose pre .hljs-literal {
+  color: #f78c6c;
+}
+
+.prose pre .hljs-function,
+.prose pre .hljs-title {
+  color: #82aaff;
+}
