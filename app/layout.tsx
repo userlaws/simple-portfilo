@@ -19,22 +19,25 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'I see you ( i dont :)',
+  title:
+    'Imanol Aracena | Associate Software Engineer | Junior Full-Stack Engineer',
   description:
-    'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
+    'CS & InfoSec student in NYC targeting Associate Software Engineer, Junior Full-Stack Engineer, and Software Engineer I roles. Built invite-code workflows for group creation, wishlists, gift claiming, and participation tracking. Stack: Next.js, React, Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, GitHub Actions CI/CD.',
   generator: 'imanol-aracena.dev',
   openGraph: {
-    title: 'Backend & Full-Stack Engineer | NYC',
+    title:
+      'Imanol Aracena | Associate Software Engineer | Software Engineer I',
     description:
-      'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
+      'CS & InfoSec student in NYC targeting Associate Software Engineer and Junior Full-Stack Engineer roles for CUNY/public sector tech and product-focused startups. Built invite-code workflows with Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, GitHub Actions CI/CD.',
     images: ['/metadata.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Backend & Full-Stack Engineer | NYC',
+    title:
+      'Imanol Aracena | Associate Software Engineer | Junior Full-Stack Engineer',
     description:
-      'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
+      'CS & InfoSec student in NYC targeting Associate Software Engineer and Software Engineer I roles. Invite-code workflows, group creation, wishlists, gift claiming, participation tracking. Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, GitHub Actions CI/CD.',
     images: ['/metadata.png'],
   },
 };

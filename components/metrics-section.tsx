@@ -28,74 +28,72 @@ interface Metric {
 
 const getMetrics = (t: (key: TranslationKey) => string): Metric[] => [
   {
-    label: 'Tickets resolved / week',
+    label: t('metricsTicketsResolvedLabel'),
     value: '40+',
-    tooltip: 'Typical volume handled at campus helpdesk.',
+    tooltip: t('metricsTicketsResolvedTooltip'),
     icon: FaTicketAlt,
     color: '#3b82f6',
   },
   {
-    label: 'First-call resolution',
+    label: t('metricsFirstCallLabel'),
     value: '≈95%',
-    tooltip: '% of tickets solved on initial contact (walk-ups + phone).',
+    tooltip: t('metricsFirstCallTooltip'),
     icon: FaCheckCircle,
     color: '#10b981',
   },
   {
-    label: 'Devices imaged',
+    label: t('metricsDevicesImagedLabel'),
     value: '200+',
-    tooltip: 'Devices imaged/deployed via SCCM for classroom/lab refresh.',
+    tooltip: t('metricsDevicesImagedTooltip'),
     icon: FaDesktop,
     color: '#f59e0b',
   },
   {
-    label: 'Services self-hosted',
+    label: t('metricsServicesSelfHostedLabel'),
     value: '10+ active',
-    tooltip:
-      'Services include Discord bots, small APIs/sites, and a Minecraft server on Arch Linux (managed with tmux/systemd).',
+    tooltip: t('metricsServicesSelfHostedTooltip'),
     icon: FaServer,
     color: '#8b5cf6',
   },
   {
-    label: 'GitHub contributions',
+    label: t('metricsGitHubContributionsLabel'),
     value: '207+',
-    tooltip:
-      'Commits, PRs, and issues across personal projects (GitHub activity graph).',
+    tooltip: t('metricsGitHubContributionsTooltip'),
     icon: FaChartLine,
     color: '#06b6d4',
   },
   {
-    label: 'Uptime (NoteShare)',
+    label: t('metricsUptimeLabel'),
     value: '99.9%',
-    tooltip: 'Last 90 days with Vercel hosting and status monitoring.',
+    tooltip: t('metricsUptimeTooltip'),
     icon: FaBolt,
     color: '#ef4444',
   },
   {
     label: t('authProviders'),
     value: t('authProvidersValue'),
-    tooltip: 'Google and Discord authentication on NoteShare platform.',
+    tooltip: t('metricsAuthProvidersTooltip'),
     icon: FaShieldAlt,
     color: '#8b5cf6',
   },
   {
     label: t('dbsShipped'),
     value: t('dbsShippedValue'),
-    tooltip: 'Production database using Supabase with PostgreSQL.',
+    tooltip: t('metricsDbsShippedTooltip'),
     icon: FaDatabase,
     color: '#10b981',
   },
   {
     label: t('ciPipelines'),
     value: t('ciPipelinesValue'),
-    tooltip: 'Automated linting, testing, and build processes.',
+    tooltip: t('metricsCiPipelinesTooltip'),
     icon: FaCogs,
     color: '#f59e0b',
   },
   {
     label: t('osMaintained'),
     value: t('osMaintainedValue'),
-    tooltip: 'Home server running Arch Linux with self-hosted services.',
+    tooltip: t('metricsOsMaintainedTooltip'),
     icon: FaLinux,
     color: '#1793d1',
   },
@@ -121,7 +119,7 @@ export function MetricsSection() {
           {metrics.map((metric, index) => (
             <div
               key={index}
-              className='group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:bg-card/80 hover:border-border transition-all duration-300 hover:shadow-lg hover:-translate-y-1'
+              className='group relative bg-card/70 border border-border/70 rounded-2xl p-6 hover:border-accent/40 transition-colors duration-300'
               title={metric.tooltip}
             >
               <div className='flex items-center gap-3 mb-3'>
@@ -151,7 +149,7 @@ export function MetricsSection() {
         {/* Additional context */}
         <div className='mt-12 text-center'>
           <div className='inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg text-sm text-muted-foreground'>
-            <span className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></span>
+            <span className='w-2 h-2 bg-green-500 rounded-full'></span>
             {t('metricsVerified')}
           </div>
         </div>

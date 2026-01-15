@@ -30,7 +30,7 @@ export function WhatIDo() {
           {areas.map((area) => (
             <div
               key={area.title}
-              className='space-y-3 p-4 sm:p-6 rounded-lg border border-border/50 hover:border-border transition-colors'
+              className='space-y-3 p-5 sm:p-6 rounded-2xl border border-border/70 bg-card/70 shadow-[0_0_30px_rgba(76,195,255,0.05)] hover:border-accent/50 hover:bg-card transition-colors'
             >
               <h3 className='text-lg font-semibold leading-tight wrap-break-word min-h-[1.2em] overflow-visible'>
                 {area.title}

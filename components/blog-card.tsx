@@ -19,12 +19,16 @@ export function BlogCard({
   category,
 }: BlogCardProps) {
   return (
-    <a href={`/blog/${slug}`} className='block group'>
-      <Card className='transition-all hover:shadow-lg hover:border-accent/50'>
-        <CardHeader>
-          <div className='flex items-center justify-between mb-2'>
+    <a
+      href={`/blog/${slug}`}
+      aria-label={`Read ${title}`}
+      className='block group'
+    >
+      <Card className='transition-all border border-border/70 bg-card/70 hover:border-accent/50 hover:bg-card hover:shadow-[0_0_30px_rgba(76,195,255,0.08)]'>
+        <CardHeader className='space-y-3'>
+          <div className='flex items-center justify-between'>
             {category && (
-              <span className='text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground'>
+              <span className='text-xs bg-muted/60 px-2.5 py-1 rounded-full text-muted-foreground'>
                 {category}
               </span>
             )}

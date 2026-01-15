@@ -9,8 +9,14 @@ export const translations = {
     // Hero
     heroTitle: 'Building reliable software with Python/Java, SQL, and React.',
     heroSubtitle:
-      'CS & InfoSec student (NYC). I ship APIs, schemas, and data tools with tests, telemetry, and runbooks.',
+      'CS & InfoSec student (NYC) targeting Associate Software Engineer, Junior Full-Stack Engineer, and Software Engineer I roles in CUNY/public sector tech and product-focused startups. Built invite-code workflows for group creation, wishlists, gift claiming, and participation tracking; ship Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, and GitHub Actions CI/CD.',
+    signalOnline: 'Signal Online',
+    aboutMeTitle: 'About Me',
+    aboutMeBody:
+      'I love to code and build things. I want to keep learning and keep building. I build websites and apps for fun. I am a gamer, so I started coding bots for Discord, and that was the start of my coding journey.',
     viewMyProjects: 'View My Projects',
+    linkedinLabel: 'LinkedIn',
+    githubLabel: 'GitHub',
     downloadResume: 'Download Résumé',
 
     // Proof Strip
@@ -143,6 +149,55 @@ export const translations = {
       'Key performance indicators from my work in IT support, development, and infrastructure management.',
     metricsVerified:
       'All metrics verified and current as of latest reporting period',
+    metricsTicketsResolvedLabel: 'Tickets resolved / week',
+    metricsTicketsResolvedTooltip:
+      'Typical volume handled at campus helpdesk.',
+    metricsFirstCallLabel: 'First-call resolution',
+    metricsFirstCallTooltip:
+      '% of tickets solved on initial contact (walk-ups + phone).',
+    metricsDevicesImagedLabel: 'Devices imaged',
+    metricsDevicesImagedTooltip:
+      'Devices imaged/deployed via SCCM for classroom/lab refresh.',
+    metricsServicesSelfHostedLabel: 'Services self-hosted',
+    metricsServicesSelfHostedTooltip:
+      'Services include Discord bots, small APIs/sites, and a Minecraft server on Arch Linux (managed with tmux/systemd).',
+    metricsGitHubContributionsLabel: 'GitHub contributions',
+    metricsGitHubContributionsTooltip:
+      'Commits, PRs, and issues across personal projects (GitHub activity graph).',
+    metricsUptimeLabel: 'Uptime (NoteShare)',
+    metricsUptimeTooltip:
+      'Last 90 days with Vercel hosting and status monitoring.',
+    metricsAuthProvidersTooltip:
+      'Google and Discord authentication on NoteShare platform.',
+    metricsDbsShippedTooltip:
+      'Production database using Supabase with PostgreSQL.',
+    metricsCiPipelinesTooltip:
+      'Automated linting, testing, and build processes.',
+    metricsOsMaintainedTooltip:
+      'Home server running Arch Linux with self-hosted services.',
+
+    // Projects
+    projectsNoteShareTitle: 'NoteShare',
+    projectsNoteShareDesc:
+      "This is my project that I made for myself to learn. It's a website that allows you to share notes with your friends.",
+    projectsGiftWhispererTitle: 'Gift Whisperer',
+    projectsGiftWhispererDesc:
+      'The anonymous gift exchange platform for friends and family. Create wishlists, claim gifts, and keep the surprise alive this holiday season—or any season!',
+    projectsPortfolioTitle: 'Personal Portfolio',
+    projectsPortfolioDesc:
+      'This is my official portfolio site showcasing my projects and skills as a full-stack developer.',
+    projectsLegacyPortfolioTitle: 'Imanol Aracena Portfolio',
+    projectsLegacyPortfolioDesc:
+      'My first tutorial-based portfolio site built from scratch. A clean, responsive design showcasing my early development journey and learning process.',
+    projectsIAResumeTitle: 'IA Resume',
+    projectsIAResumeDesc:
+      'A modern portfolio site built using Once UI framework. Features a sleek design with advanced UI components and smooth animations.',
+    projectsDiscordVCLeaderboardTitle: 'Discord VC Leaderboard',
+    projectsDiscordVCLeaderboardDesc:
+      'A Discord bot that tracks voice channel activity and creates leaderboards. Features real-time tracking, weekly/monthly rankings, and customizable settings for server administrators.',
+
+    // Footer
+    footerCopyright: '© 2025 Imanol Aracena. All rights reserved.',
 
     // Common
     loading: 'Loading...',
@@ -165,8 +220,14 @@ export const translations = {
     // Hero
     heroTitle: 'Construyendo software confiable con Python/Java, SQL y React.',
     heroSubtitle:
-      'Estudiante de CS e InfoSec (NYC). Desarrollo APIs, esquemas y herramientas de datos con pruebas, telemetría y manuales.',
+      'Estudiante de CS e InfoSec (NYC) buscando roles de Associate Software Engineer, Junior Full-Stack Engineer y Software Engineer I en CUNY/sector público y startups enfocadas en producto. Implementé workflows con códigos de invitación para creación de grupos, wishlists, reclamación de regalos y seguimiento de participación; desarrollo con Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker y GitHub Actions CI/CD.',
+    signalOnline: 'Señal en línea',
+    aboutMeTitle: 'Sobre mí',
+    aboutMeBody:
+      'Me encanta programar y construir cosas. Quiero seguir aprendiendo y seguir creando. Construyo sitios web y apps por diversión. Soy gamer, así que empecé a programar bots para Discord, y ese fue el inicio de mi camino.',
     viewMyProjects: 'Ver Mis Proyectos',
+    linkedinLabel: 'LinkedIn',
+    githubLabel: 'GitHub',
     downloadResume: 'Descargar Currículum',
 
     // Proof Strip
@@ -303,6 +364,55 @@ export const translations = {
       'Indicadores clave de rendimiento de mi trabajo en soporte de TI, desarrollo y gestión de infraestructura.',
     metricsVerified:
       'Todas las métricas verificadas y actuales al último período de reporte',
+    metricsTicketsResolvedLabel: 'Tickets resueltos / semana',
+    metricsTicketsResolvedTooltip:
+      'Volumen típico manejado en la mesa de ayuda del campus.',
+    metricsFirstCallLabel: 'Resolución en primera llamada',
+    metricsFirstCallTooltip:
+      '% de tickets resueltos en el primer contacto (presencial + teléfono).',
+    metricsDevicesImagedLabel: 'Dispositivos preparados',
+    metricsDevicesImagedTooltip:
+      'Dispositivos preparados/desplegados vía SCCM para renovación de aulas/lab.',
+    metricsServicesSelfHostedLabel: 'Servicios autoalojados',
+    metricsServicesSelfHostedTooltip:
+      'Servicios incluyen bots de Discord, APIs/sitios pequeños y un servidor de Minecraft en Arch Linux (gestionado con tmux/systemd).',
+    metricsGitHubContributionsLabel: 'Contribuciones en GitHub',
+    metricsGitHubContributionsTooltip:
+      'Commits, PRs e issues en proyectos personales (gráfico de actividad de GitHub).',
+    metricsUptimeLabel: 'Disponibilidad (NoteShare)',
+    metricsUptimeTooltip:
+      'Últimos 90 días con hosting en Vercel y monitoreo de estado.',
+    metricsAuthProvidersTooltip:
+      'Autenticación con Google y Discord en NoteShare.',
+    metricsDbsShippedTooltip:
+      'Base de datos en producción usando Supabase con PostgreSQL.',
+    metricsCiPipelinesTooltip:
+      'Procesos automatizados de linting, testing y build.',
+    metricsOsMaintainedTooltip:
+      'Servidor doméstico con Arch Linux y servicios autoalojados.',
+
+    // Projects
+    projectsNoteShareTitle: 'NoteShare',
+    projectsNoteShareDesc:
+      'Este es mi proyecto personal para aprender. Es un sitio que permite compartir apuntes con amigos.',
+    projectsGiftWhispererTitle: 'Gift Whisperer',
+    projectsGiftWhispererDesc:
+      'Plataforma anónima de intercambio de regalos para amigos y familia. Crea listas de deseos, reclama regalos y mantén la sorpresa.',
+    projectsPortfolioTitle: 'Portafolio Personal',
+    projectsPortfolioDesc:
+      'Mi portafolio oficial que muestra proyectos y habilidades como desarrollador full-stack.',
+    projectsLegacyPortfolioTitle: 'Portafolio de Imanol Aracena',
+    projectsLegacyPortfolioDesc:
+      'Mi primer portafolio basado en tutoriales, construido desde cero. Diseño limpio y responsive que muestra mi camino inicial.',
+    projectsIAResumeTitle: 'IA Resume',
+    projectsIAResumeDesc:
+      'Sitio de portafolio moderno construido con Once UI. Diseño elegante con componentes avanzados y animaciones suaves.',
+    projectsDiscordVCLeaderboardTitle: 'Discord VC Leaderboard',
+    projectsDiscordVCLeaderboardDesc:
+      'Bot de Discord que rastrea actividad en canales de voz y crea tablas de clasificación. Incluye seguimiento en tiempo real y rankings.',
+
+    // Footer
+    footerCopyright: '© 2025 Imanol Aracena. Todos los derechos reservados.',
 
     // Common
     loading: 'Cargando...',

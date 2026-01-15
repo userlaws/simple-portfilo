@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from 'react';
 
-type Theme = 'light' | 'dark' | 'party';
+type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -18,27 +18,27 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setThemeState] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('theme') as Theme;
-    if (saved && ['light', 'dark', 'party'].includes(saved)) {
+    if (saved && ['light', 'dark'].includes(saved)) {
       setThemeState(saved);
     }
   }, []);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    document.documentElement.classList.remove('light', 'dark', 'party');
+    document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(newTheme);
     localStorage.setItem('theme', newTheme);
   };
 
   if (!mounted) {
     return (
-      <ThemeContext.Provider value={{ theme: 'light', setTheme }}>
+      <ThemeContext.Provider value={{ theme: 'dark', setTheme }}>
         {children}
       </ThemeContext.Provider>
     );

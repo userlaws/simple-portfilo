@@ -24,16 +24,18 @@ export function ProjectCard({
       href={href}
       target='_blank'
       rel='noopener noreferrer'
+      aria-label={`${title} project`}
       className='block group cursor-pointer'
     >
-      <Card className='transition-all duration-300 hover:shadow-xl hover:border-accent/50 hover:scale-[1.02] hover:bg-accent/5'>
-        <CardHeader>
-          <div className='flex flex-wrap gap-2 mb-3'>
+      <Card className='transition-all duration-300 border border-border/70 bg-card/70 hover:border-accent/50 hover:bg-card hover:shadow-[0_0_40px_rgba(76,195,255,0.08)]'>
+        <CardHeader className='space-y-4'>
+          <div className='h-1 w-10 rounded-full bg-accent/70'></div>
+          <div className='flex flex-wrap gap-2'>
             {tags.map((tag) => (
               <Badge
                 key={tag}
                 variant='secondary'
-                className='font-mono text-xs group-hover:bg-accent/20 transition-colors'
+                className='font-mono text-xs bg-muted/60 text-foreground group-hover:bg-accent/15 transition-colors'
               >
                 {tag}
               </Badge>

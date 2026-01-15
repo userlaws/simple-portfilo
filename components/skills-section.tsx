@@ -124,7 +124,7 @@ export function SkillsSection() {
       return (
         <div
           key={skillName}
-          className='inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors duration-200 group'
+          className='inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border/70 bg-card/60 hover:border-accent/50 hover:bg-card transition-colors duration-200 group'
           style={{ borderLeft: `3px solid ${skill.color}` }}
         >
           <IconComponent
@@ -146,7 +146,7 @@ export function SkillsSection() {
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
         {/* Languages */}
         <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2'>
+          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
             <span className='text-2xl'>💻</span>
             {t('languages')}
           </h3>
@@ -157,7 +157,7 @@ export function SkillsSection() {
 
         {/* Technologies */}
         <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2'>
+          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
             <span className='text-2xl'>⚡</span>
             {t('technologies')}
           </h3>
@@ -168,7 +168,7 @@ export function SkillsSection() {
 
         {/* Tools */}
         <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2'>
+          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
             <span className='text-2xl'>🛠️</span>
             {t('tools')}
           </h3>
@@ -179,7 +179,7 @@ export function SkillsSection() {
 
         {/* Security */}
         <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2'>
+          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
             <span className='text-2xl'>🔒</span>
             {t('security')}
           </h3>

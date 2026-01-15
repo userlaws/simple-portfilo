@@ -43,9 +43,9 @@ export default async function BlogPostPage({
       <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 max-w-4xl'>
         <div className='space-y-6 sm:space-y-8'>
           {/* Header */}
-          <div className='text-center sm:text-left py-2'>
+          <div className='rounded-3xl border border-border/70 bg-card/70 px-6 py-7 sm:px-8 sm:py-8 shadow-[0_0_40px_rgba(76,195,255,0.08)] text-center sm:text-left'>
             <div className='mb-4'>
-              <span className='text-xs bg-muted px-3 py-1 rounded-full text-muted-foreground'>
+              <span className='text-xs bg-accent/10 px-3 py-1 rounded-full text-accent border border-accent/20'>
                 {post.category}
               </span>
             </div>

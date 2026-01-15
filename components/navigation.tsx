@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Sun, Moon, PartyPopper, Languages } from 'lucide-react';
+import { Menu, X, Sun, Moon, Languages } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
@@ -83,10 +83,6 @@ export function Navigation() {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const togglePartyMode = () => {
-    setTheme(theme === 'party' ? 'light' : 'party');
-  };
-
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'es' : 'en');
   };
@@ -100,24 +96,25 @@ export function Navigation() {
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
-      } ${isScrolled ? 'bg-transparent' : 'bg-background shadow-sm'}`}
+      } ${isScrolled ? 'bg-transparent' : 'bg-background/80 backdrop-blur-md'}`}
     >
       <div
         className={`transition-all duration-300 ease-in-out ${
           isScrolled
-            ? 'container mx-auto px-6 py-3 mt-4 mb-2 max-w-4xl bg-background/95 backdrop-blur-md rounded-full shadow-xl border border-border/50'
-            : 'container mx-auto px-4 py-4'
+            ? 'container mx-auto px-6 py-3 mt-4 mb-2 max-w-4xl bg-background/85 backdrop-blur-md rounded-full shadow-[0_0_30px_rgba(76,195,255,0.08)] border border-border/70'
+            : 'container mx-auto px-4 py-4 border-b border-border/50'
         } flex items-center justify-between`}
       >
         {/* Logo Section */}
         <a
           href='/'
+          aria-label='Home'
           className='flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200'
         >
           <div
             className={`${
               isScrolled ? 'w-6 h-6' : 'w-8 h-8'
-            } rounded-lg overflow-hidden transition-all duration-300 shadow-sm`}
+            } rounded-lg overflow-hidden transition-all duration-300 shadow-sm ring-1 ring-accent/30`}
           >
             <img
               src='/icon.png'
@@ -137,12 +134,12 @@ export function Navigation() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className='hidden md:flex items-center space-x-8'>
+        <nav className='hidden md:flex items-center space-x-6'>
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:bg-muted/50 px-3 py-2 rounded-lg'
+              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 px-3 py-2 rounded-lg hover:bg-accent/10'
             >
               {link.label}
             </a>
@@ -158,25 +155,10 @@ export function Navigation() {
               size='icon'
               onClick={toggleTheme}
               title='Toggle theme'
-              className='transition-all duration-200 hover:bg-muted/50 hover:scale-105 active:scale-95'
+              className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
             >
               {theme === 'dark' && <Moon className='h-5 w-5' />}
               {theme === 'light' && <Sun className='h-5 w-5' />}
-              {theme === 'party' && <Sun className='h-5 w-5' />}
-            </Button>
-
-            <Button
-              variant='ghost'
-              size='icon'
-              onClick={togglePartyMode}
-              title='Toggle party mode'
-              className='transition-all duration-200 hover:bg-muted/50 hover:scale-105 active:scale-95'
-            >
-              <PartyPopper
-                className={`h-5 w-5 ${
-                  theme === 'party' ? 'text-yellow-500' : ''
-                }`}
-              />
             </Button>
 
             <Button
@@ -184,7 +166,7 @@ export function Navigation() {
               size='icon'
               onClick={toggleLanguage}
               title='Toggle language'
-              className='transition-all duration-200 hover:bg-muted/50 hover:scale-105 active:scale-95'
+              className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
             >
               <Languages className='h-5 w-5' />
             </Button>
@@ -192,7 +174,7 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className='md:hidden text-foreground transition-all duration-200 hover:text-primary hover:scale-105 active:scale-95 p-2 rounded-xl hover:bg-muted/50'
+            className='md:hidden text-foreground transition-all duration-200 hover:text-accent hover:scale-105 active:scale-95 p-2 rounded-xl hover:bg-accent/10'
             onClick={handleMobileMenuToggle}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             type='button'
@@ -226,8 +208,8 @@ export function Navigation() {
         <div
           className={`transition-all duration-300 ${
             isScrolled
-              ? 'bg-card/95 backdrop-blur-md border border-border/50 mx-3 mt-1 mb-2 rounded-2xl shadow-2xl ring-1 ring-border/20'
-              : 'bg-card border-b border-l border-r border-border rounded-b-3xl mx-3 mb-4 shadow-xl ring-1 ring-border/20'
+              ? 'bg-card/95 backdrop-blur-md border border-border/70 mx-3 mt-1 mb-2 rounded-2xl shadow-2xl ring-1 ring-border/30'
+              : 'bg-card border-b border-l border-r border-border/70 rounded-b-3xl mx-3 mb-4 shadow-xl ring-1 ring-border/30'
           }`}
         >
           <div className='p-6 space-y-6'>
@@ -237,7 +219,7 @@ export function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className='block text-base font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:bg-muted/50 px-3 py-2 rounded-lg'
+                  className='block text-base font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:bg-accent/10 px-3 py-2 rounded-lg'
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -251,31 +233,17 @@ export function Navigation() {
                 variant='ghost'
                 size='icon'
                 onClick={toggleTheme}
-                className='transition-all duration-200 hover:bg-muted/50 hover:scale-105 active:scale-95'
+                className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
               >
                 {theme === 'dark' && <Moon className='h-5 w-5' />}
                 {theme === 'light' && <Sun className='h-5 w-5' />}
-                {theme === 'party' && <Sun className='h-5 w-5' />}
-              </Button>
-
-              <Button
-                variant='ghost'
-                size='icon'
-                onClick={togglePartyMode}
-                className='transition-all duration-200 hover:bg-muted/50 hover:scale-105 active:scale-95'
-              >
-                <PartyPopper
-                  className={`h-5 w-5 ${
-                    theme === 'party' ? 'text-yellow-500' : ''
-                  }`}
-                />
               </Button>
 
               <Button
                 variant='ghost'
                 size='icon'
                 onClick={toggleLanguage}
-                className='transition-all duration-200 hover:bg-muted/50 hover:scale-105 active:scale-95'
+                className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
               >
                 <Languages className='h-5 w-5' />
               </Button>

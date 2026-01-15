@@ -3,9 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Navigation } from '@/components/navigation';
 import { BlogCard } from '@/components/blog-card';
-import { Confetti } from '@/components/confetti';
 import { useLanguage } from '@/contexts/language-context';
-import { useTheme } from '@/contexts/theme-context';
 import { Filter, ChevronDown } from 'lucide-react';
 
 interface BlogPost {
@@ -85,13 +83,13 @@ function CategoryDropdown({
         className={`
           flex items-center gap-3 px-4 py-3 w-full sm:min-w-[200px] sm:w-auto
           min-h-[44px] touch-manipulation
-          bg-background border border-border rounded-lg
-          hover:border-accent/50 hover:bg-accent/5 hover:shadow-md
+          bg-card/70 border border-border/70 rounded-lg
+          hover:border-accent/40 hover:bg-card hover:shadow-[0_0_20px_rgba(76,195,255,0.08)]
           focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent
           transition-all duration-200 ease-in-out
           ${
             isOpen
-              ? 'border-accent bg-accent/5 shadow-lg ring-1 ring-accent/20'
+              ? 'border-accent bg-card shadow-lg ring-1 ring-accent/20'
               : ''
           }
         `}
@@ -115,7 +113,7 @@ function CategoryDropdown({
       <div
         className={`
           absolute top-full left-0 right-0 sm:right-auto sm:min-w-[200px] mt-2 z-50
-          bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-xl
+          bg-card/95 backdrop-blur-sm border border-border/70 rounded-lg shadow-xl
           overflow-hidden
           transition-all duration-300 ease-out
           ${
@@ -148,11 +146,11 @@ function CategoryDropdown({
                   ${
                     isEmpty && !isSelected
                       ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:bg-accent/10 hover:text-accent-foreground active:bg-accent/15'
+                      : 'hover:bg-accent/10 hover:text-foreground active:bg-accent/15'
                   }
                   ${
                     isSelected
-                      ? 'bg-accent text-accent-foreground'
+                      ? 'bg-accent/15 text-foreground'
                       : 'text-foreground'
                   }
                 `}
@@ -178,97 +176,58 @@ function CategoryDropdown({
 
 export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
   const { t } = useLanguage();
-  const { theme, setTheme } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [visiblePosts, setVisiblePosts] = useState<BlogPost[]>(posts);
+  const [isLoading, setIsLoading] = useState(posts.length === 0);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
-  const handleCancelParty = () => {
-    setTheme('light');
-  };
+  useEffect(() => {
+    let isMounted = true;
 
-  // Get the full document height for the overlay
-  const getDocumentHeight = () => {
-    if (typeof window !== 'undefined') {
-      return Math.max(
-        document.body.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-        document.documentElement.offsetHeight
-      );
-    }
-    return '100vh';
-  };
+    const fetchPosts = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/blog', { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error('Failed to fetch blog posts');
+        }
+        const data = (await response.json()) as { posts?: BlogPost[] };
+        if (isMounted) {
+          setVisiblePosts(data.posts ?? []);
+          setLoadError(null);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setLoadError(
+            error instanceof Error ? error.message : 'Unable to load posts'
+          );
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchPosts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const filteredPosts =
     selectedCategory === 'All'
-      ? posts
-      : posts.filter((post) => post.category === selectedCategory);
+      ? visiblePosts
+      : visiblePosts.filter((post) => post.category === selectedCategory);
 
   return (
     <main className='min-h-screen'>
-      {theme === 'party' && <Confetti />}
-      {theme === 'party' && (
-        <div
-          onClick={handleCancelParty}
-          style={{
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            width: '100vw',
-            height: `${getDocumentHeight()}px`,
-            backgroundColor: 'rgba(255, 0, 0, 0.1)',
-            zIndex: 999999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pointerEvents: 'auto',
-            cursor: 'pointer',
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              textAlign: 'center',
-              pointerEvents: 'auto',
-            }}
-          >
-            <button
-              onClick={handleCancelParty}
-              style={{
-                backgroundColor: 'red',
-                color: 'white',
-                padding: '30px 60px',
-                border: '5px solid white',
-                borderRadius: '15px',
-                fontSize: '24px',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                boxShadow: '0 0 50px rgba(255, 0, 0, 0.8)',
-                marginBottom: '20px',
-              }}
-            >
-              🎉 CANCEL PARTY 🎉
-            </button>
-            <div
-              style={{
-                color: 'white',
-                fontSize: '18px',
-                fontWeight: 'bold',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
-                backgroundColor: 'rgba(0,0,0,0.7)',
-                padding: '10px 20px',
-                borderRadius: '10px',
-              }}
-            >
-              Or tap anywhere to cancel
-            </div>
-          </div>
-        </div>
-      )}
       <Navigation />
       <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 max-w-4xl'>
         <div className='space-y-6 sm:space-y-8'>
-          <div className='text-center sm:text-left py-2'>
+          <div className='rounded-3xl border border-border/70 bg-card/70 px-6 py-7 sm:px-8 sm:py-8 shadow-[0_0_40px_rgba(76,195,255,0.08)] text-center sm:text-left'>
+            <div className='h-1 w-10 rounded-full bg-accent/70 mb-4 mx-auto sm:mx-0'></div>
             <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight wrap-break-word min-h-[1.2em] overflow-visible pb-1'>
               {t('blogTitle')}
             </h1>
@@ -291,7 +250,7 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
             {selectedCategory !== 'All' && (
               <button
                 onClick={() => setSelectedCategory('All')}
-                className='px-4 py-3 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 border border-border rounded-lg hover:border-accent/50 hover:bg-accent/5'
+                className='px-4 py-3 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 border border-border/70 rounded-lg hover:border-accent/40 hover:bg-accent/10'
               >
                 {t('clearFilter')}
               </button>
@@ -319,7 +278,17 @@ export function BlogPageClient({ posts }: { posts: BlogPost[] }) {
           </div>
 
           {/* No results message */}
-          {filteredPosts.length === 0 && (
+          {isLoading && filteredPosts.length === 0 && (
+            <div className='text-center py-12'>
+              <p className='text-muted-foreground'>{t('loading')}</p>
+            </div>
+          )}
+          {!isLoading && loadError && (
+            <div className='text-center py-12'>
+              <p className='text-muted-foreground'>{loadError}</p>
+            </div>
+          )}
+          {!isLoading && !loadError && filteredPosts.length === 0 && (
             <div className='text-center py-12'>
               <p className='text-muted-foreground'>{t('noNotesFound')}</p>
             </div>
