@@ -1,72 +1,75 @@
 'use client';
 
 import { useState } from 'react';
+import type { LucideIcon } from 'lucide-react';
+import {
+  Atom,
+  Braces,
+  Brackets,
+  Code2,
+  Coffee,
+  Container,
+  Database,
+  Figma,
+  GitBranch,
+  Hash,
+  Image,
+  KeyRound,
+  Lock,
+  Network,
+  Paintbrush,
+  PanelsTopLeft,
+  Server,
+  Shield,
+  ShieldAlert,
+  ShieldCheck,
+  Smartphone,
+  Terminal,
+  Video,
+  Waypoints,
+  Wind,
+  Workflow,
+  CodeXml,
+} from 'lucide-react';
 import { Chip } from '@heroui/react';
 import { useLanguage } from '@/contexts/language-context';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
-import {
-  SiJavascript,
-  SiTypescript,
-  SiPython,
-  SiOpenjdk,
-  SiSharp,
-  SiMysql,
-  SiHtml5,
-  SiCss3,
-  SiNextdotjs,
-  SiReact,
-  SiNodedotjs,
-  SiExpress,
-  SiTailwindcss,
-  SiGit,
-  SiGithubactions,
-  SiDocker,
-  SiFigma,
-  SiAdobephotoshop,
-  SiAdobe,
-  SiOpenvpn,
-  SiOpenssl,
-  SiAuth0,
-  SiGoogle,
-  SiDiscord,
-  SiCoder,
-} from 'react-icons/si';
 
 interface Skill {
   name: string;
-  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+  icon: LucideIcon;
   color: string;
 }
 
 const skillMap: Record<string, Skill> = {
-  JavaScript: { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
-  TypeScript: { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
-  Python: { name: 'Python', icon: SiPython, color: '#3776ab' },
-  Java: { name: 'Java', icon: SiOpenjdk, color: '#f89820' },
-  'C#': { name: 'C#', icon: SiSharp, color: '#239120' },
-  SQL: { name: 'SQL', icon: SiMysql, color: '#336791' },
-  HTML: { name: 'HTML', icon: SiHtml5, color: '#e34f26' },
-  CSS: { name: 'CSS', icon: SiCss3, color: '#1572b6' },
-  'Next.js': { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
-  React: { name: 'React', icon: SiReact, color: '#61dafb' },
-  'Node.js': { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-  Express: { name: 'Express', icon: SiExpress, color: '#000000' },
-  'Tailwind CSS': { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06b6d4' },
-  Git: { name: 'Git', icon: SiGit, color: '#f05032' },
-  'GitHub Actions': { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088ff' },
-  Docker: { name: 'Docker', icon: SiDocker, color: '#2496ed' },
-  'VS Code': { name: 'VS Code', icon: SiCoder, color: '#007acc' },
-  Figma: { name: 'Figma', icon: SiFigma, color: '#f24e1e' },
-  'Adobe Photoshop': { name: 'Adobe Photoshop', icon: SiAdobephotoshop, color: '#31a8ff' },
-  'Adobe Premiere': { name: 'Adobe Premiere', icon: SiAdobe, color: '#ea4335' },
-  SSH: { name: 'SSH', icon: SiOpenvpn, color: '#6b7280' },
-  Metasploit: { name: 'Metasploit', icon: SiOpenvpn, color: '#ff6b6b' },
-  tcpdump: { name: 'tcpdump', icon: SiOpenvpn, color: '#4ecdc4' },
-  OpenSSL: { name: 'OpenSSL', icon: SiOpenssl, color: '#721c24' },
-  'Network Hardening': { name: 'Network Hardening', icon: SiOpenvpn, color: '#2c3e50' },
-  OAuth: { name: 'OAuth', icon: SiAuth0, color: '#4285f4' },
-  MFA: { name: 'MFA', icon: SiGoogle, color: '#34a853' },
-  'Row Level Security': { name: 'Row Level Security', icon: SiDiscord, color: '#ea4335' },
+  JavaScript: { name: 'JavaScript', icon: Braces, color: '#f7df1e' },
+  TypeScript: { name: 'TypeScript', icon: Brackets, color: '#3178c6' },
+  Python: { name: 'Python', icon: Terminal, color: '#3776ab' },
+  Java: { name: 'Java', icon: Coffee, color: '#f89820' },
+  'C#': { name: 'C#', icon: Hash, color: '#239120' },
+  SQL: { name: 'SQL', icon: Database, color: '#336791' },
+  HTML: { name: 'HTML', icon: CodeXml, color: '#e34f26' },
+  CSS: { name: 'CSS', icon: Paintbrush, color: '#1572b6' },
+  'Next.js': { name: 'Next.js', icon: PanelsTopLeft, color: '#000000' },
+  React: { name: 'React', icon: Atom, color: '#61dafb' },
+  'Node.js': { name: 'Node.js', icon: Server, color: '#339933' },
+  Express: { name: 'Express', icon: Waypoints, color: '#000000' },
+  'Tailwind CSS': { name: 'Tailwind CSS', icon: Wind, color: '#06b6d4' },
+  Git: { name: 'Git', icon: GitBranch, color: '#f05032' },
+  'GitHub Actions': { name: 'GitHub Actions', icon: Workflow, color: '#2088ff' },
+  Docker: { name: 'Docker', icon: Container, color: '#2496ed' },
+  'VS Code': { name: 'VS Code', icon: Code2, color: '#007acc' },
+  Figma: { name: 'Figma', icon: Figma, color: '#f24e1e' },
+  'Adobe Photoshop': { name: 'Adobe Photoshop', icon: Image, color: '#31a8ff' },
+  'Adobe Premiere': { name: 'Adobe Premiere', icon: Video, color: '#ea4335' },
+  SSH: { name: 'SSH', icon: Terminal, color: '#6b7280' },
+  Metasploit: { name: 'Metasploit', icon: ShieldAlert, color: '#ff6b6b' },
+  tcpdump: { name: 'tcpdump', icon: Network, color: '#4ecdc4' },
+  OpenSSL: { name: 'OpenSSL', icon: Lock, color: '#721c24' },
+  'Network Hardening': { name: 'Network Hardening', icon: Shield, color: '#2c3e50' },
+  OAuth: { name: 'OAuth', icon: KeyRound, color: '#4285f4' },
+  MFA: { name: 'MFA', icon: Smartphone, color: '#34a853' },
+  'Row Level Security': { name: 'Row Level Security', icon: ShieldCheck, color: '#ea4335' },
 };
 
 type CategoryKey = 'languages' | 'technologies' | 'tools' | 'focusAreas';
@@ -126,8 +129,9 @@ export const SkillsSection = () => {
               >
                 <span className='flex items-center gap-2'>
                   <IconComponent
-                    className='text-base'
+                    className='h-4 w-4 shrink-0'
                     style={{ color: skill.color }}
+                    aria-hidden
                   />
                   <span className='text-sm font-medium text-foreground'>
                     {skillName}
