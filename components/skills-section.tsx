@@ -1,6 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+import { Chip } from '@heroui/react';
 import { useLanguage } from '@/contexts/language-context';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import {
   SiJavascript,
   SiTypescript,
@@ -26,168 +29,115 @@ import {
   SiAuth0,
   SiGoogle,
   SiDiscord,
+  SiCoder,
 } from 'react-icons/si';
-import { SiCoder } from 'react-icons/si';
 
 interface Skill {
   name: string;
-  icon: React.ComponentType<{
-    className?: string;
-    style?: React.CSSProperties;
-  }>;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   color: string;
 }
 
-const skills: Skill[] = [
-  // Languages
-  { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
-  { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
-  { name: 'Python', icon: SiPython, color: '#3776ab' },
-  { name: 'Java', icon: SiOpenjdk, color: '#f89820' },
-  { name: 'C#', icon: SiSharp, color: '#239120' },
-  { name: 'SQL', icon: SiMysql, color: '#336791' },
-  { name: 'HTML', icon: SiHtml5, color: '#e34f26' },
-  { name: 'CSS', icon: SiCss3, color: '#1572b6' },
-
-  // Technologies
-  { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
-  { name: 'React', icon: SiReact, color: '#61dafb' },
-  { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-  { name: 'Express', icon: SiExpress, color: '#000000' },
-  { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06b6d4' },
-
-  // Tools
-  { name: 'Git', icon: SiGit, color: '#f05032' },
-  { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088ff' },
-  { name: 'Docker', icon: SiDocker, color: '#2496ed' },
-  { name: 'VS Code', icon: SiCoder, color: '#007acc' },
-  { name: 'Figma', icon: SiFigma, color: '#f24e1e' },
-  { name: 'Adobe Photoshop', icon: SiAdobephotoshop, color: '#31a8ff' },
-  { name: 'Adobe Premiere', icon: SiAdobe, color: '#ea4335' },
-
-  // Focus Areas
-  { name: 'SSH', icon: SiOpenvpn, color: '#000000' },
-  { name: 'Metasploit', icon: SiOpenvpn, color: '#ff6b6b' },
-  { name: 'tcpdump', icon: SiOpenvpn, color: '#4ecdc4' },
-  { name: 'OpenSSL', icon: SiOpenssl, color: '#721c24' },
-  { name: 'Network Hardening', icon: SiOpenvpn, color: '#2c3e50' },
-  { name: 'OAuth', icon: SiAuth0, color: '#4285f4' },
-  { name: 'MFA', icon: SiGoogle, color: '#34a853' },
-  { name: 'Row Level Security', icon: SiDiscord, color: '#ea4335' },
-];
-
-const skillCategories = {
-  languages: [
-    'JavaScript',
-    'TypeScript',
-    'Python',
-    'Java',
-    'C#',
-    'SQL',
-    'HTML',
-    'CSS',
-  ],
-  technologies: ['Next.js', 'React', 'Node.js', 'Express', 'Tailwind CSS'],
-  tools: [
-    'Git',
-    'GitHub Actions',
-    'Docker',
-    'VS Code',
-    'Figma',
-    'Adobe Photoshop',
-    'Adobe Premiere',
-  ],
-  focusAreas: [
-    'SSH',
-    'Metasploit',
-    'tcpdump',
-    'OpenSSL',
-    'Network Hardening',
-    'OAuth',
-    'MFA',
-    'Row Level Security',
-  ],
+const skillMap: Record<string, Skill> = {
+  JavaScript: { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
+  TypeScript: { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
+  Python: { name: 'Python', icon: SiPython, color: '#3776ab' },
+  Java: { name: 'Java', icon: SiOpenjdk, color: '#f89820' },
+  'C#': { name: 'C#', icon: SiSharp, color: '#239120' },
+  SQL: { name: 'SQL', icon: SiMysql, color: '#336791' },
+  HTML: { name: 'HTML', icon: SiHtml5, color: '#e34f26' },
+  CSS: { name: 'CSS', icon: SiCss3, color: '#1572b6' },
+  'Next.js': { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
+  React: { name: 'React', icon: SiReact, color: '#61dafb' },
+  'Node.js': { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
+  Express: { name: 'Express', icon: SiExpress, color: '#000000' },
+  'Tailwind CSS': { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06b6d4' },
+  Git: { name: 'Git', icon: SiGit, color: '#f05032' },
+  'GitHub Actions': { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088ff' },
+  Docker: { name: 'Docker', icon: SiDocker, color: '#2496ed' },
+  'VS Code': { name: 'VS Code', icon: SiCoder, color: '#007acc' },
+  Figma: { name: 'Figma', icon: SiFigma, color: '#f24e1e' },
+  'Adobe Photoshop': { name: 'Adobe Photoshop', icon: SiAdobephotoshop, color: '#31a8ff' },
+  'Adobe Premiere': { name: 'Adobe Premiere', icon: SiAdobe, color: '#ea4335' },
+  SSH: { name: 'SSH', icon: SiOpenvpn, color: '#6b7280' },
+  Metasploit: { name: 'Metasploit', icon: SiOpenvpn, color: '#ff6b6b' },
+  tcpdump: { name: 'tcpdump', icon: SiOpenvpn, color: '#4ecdc4' },
+  OpenSSL: { name: 'OpenSSL', icon: SiOpenssl, color: '#721c24' },
+  'Network Hardening': { name: 'Network Hardening', icon: SiOpenvpn, color: '#2c3e50' },
+  OAuth: { name: 'OAuth', icon: SiAuth0, color: '#4285f4' },
+  MFA: { name: 'MFA', icon: SiGoogle, color: '#34a853' },
+  'Row Level Security': { name: 'Row Level Security', icon: SiDiscord, color: '#ea4335' },
 };
 
-export function SkillsSection() {
+type CategoryKey = 'languages' | 'technologies' | 'tools' | 'focusAreas';
+
+const categories: Record<CategoryKey, string[]> = {
+  languages: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'SQL', 'HTML', 'CSS'],
+  technologies: ['Next.js', 'React', 'Node.js', 'Express', 'Tailwind CSS'],
+  tools: ['Git', 'GitHub Actions', 'Docker', 'VS Code', 'Figma', 'Adobe Photoshop', 'Adobe Premiere'],
+  focusAreas: ['SSH', 'Metasploit', 'tcpdump', 'OpenSSL', 'Network Hardening', 'OAuth', 'MFA', 'Row Level Security'],
+};
+
+const tabKeys: CategoryKey[] = ['languages', 'technologies', 'tools', 'focusAreas'];
+
+export const SkillsSection = () => {
   const { t } = useLanguage();
+  const ref = useScrollReveal();
+  const [activeTab, setActiveTab] = useState<CategoryKey>('languages');
 
-  const getSkillIcon = (skillName: string) => {
-    const skill = skills.find((s) => s.name === skillName);
-    return skill || { name: skillName, icon: SiJavascript, color: '#6b7280' };
-  };
-
-  const renderSkillChips = (category: keyof typeof skillCategories) => {
-    return skillCategories[category].map((skillName) => {
-      const skill = getSkillIcon(skillName);
-      const IconComponent = skill.icon;
-      return (
-        <div
-          key={skillName}
-          className='inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border/70 bg-card/60 hover:border-accent/50 hover:bg-card transition-colors duration-200 group'
-          style={{ borderLeft: `3px solid ${skill.color}` }}
-        >
-          <IconComponent
-            className='text-lg group-hover:scale-110 transition-transform duration-200'
-            style={{ color: skill.color }}
-          />
-          <span className='text-sm font-medium text-foreground group-hover:text-accent transition-colors duration-200'>
-            {skillName}
-          </span>
-        </div>
-      );
-    });
+  const tabLabels: Record<CategoryKey, string> = {
+    languages: t('languages'),
+    technologies: t('technologies'),
+    tools: t('tools'),
+    focusAreas: t('security'),
   };
 
   return (
-    <section className='space-y-6'>
-      <h2 className='text-xl sm:text-2xl font-bold mb-4'>{t('skills')}</h2>
+    <section className='px-6 md:px-8 py-16 md:py-24'>
+      <div ref={ref} className='reveal max-w-5xl mx-auto space-y-8'>
+        <h2 className='text-2xl sm:text-3xl font-bold text-center'>{t('skills')}</h2>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
-        {/* Languages */}
-        <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
-            <span className='text-2xl'>💻</span>
-            {t('languages')}
-          </h3>
-          <div className='flex flex-wrap gap-2'>
-            {renderSkillChips('languages')}
-          </div>
+        <div className='flex flex-wrap justify-center gap-2'>
+          {tabKeys.map((key) => (
+            <button
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeTab === key
+                  ? 'bg-accent text-accent-foreground'
+                  : 'bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80'
+              }`}
+            >
+              {tabLabels[key]}
+            </button>
+          ))}
         </div>
 
-        {/* Technologies */}
-        <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
-            <span className='text-2xl'>⚡</span>
-            {t('technologies')}
-          </h3>
-          <div className='flex flex-wrap gap-2'>
-            {renderSkillChips('technologies')}
-          </div>
-        </div>
-
-        {/* Tools */}
-        <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
-            <span className='text-2xl'>🛠️</span>
-            {t('tools')}
-          </h3>
-          <div className='flex flex-wrap gap-2'>
-            {renderSkillChips('tools')}
-          </div>
-        </div>
-
-        {/* Security */}
-        <div className='space-y-4'>
-          <h3 className='font-semibold text-lg flex items-center gap-2 text-foreground'>
-            <span className='text-2xl'>🔒</span>
-            {t('security')}
-          </h3>
-          <div className='flex flex-wrap gap-2'>
-            {renderSkillChips('focusAreas')}
-          </div>
+        <div className='flex flex-wrap justify-center gap-3 reveal-children visible' key={activeTab}>
+          {categories[activeTab].map((skillName) => {
+            const skill = skillMap[skillName];
+            if (!skill) return null;
+            const IconComponent = skill.icon;
+            return (
+              <Chip
+                key={skillName}
+                variant='bordered'
+                className='border-border/70 bg-card/60 hover:border-accent/50 transition-colors duration-200 px-3 py-5 gap-2'
+              >
+                <span className='flex items-center gap-2'>
+                  <IconComponent
+                    className='text-base'
+                    style={{ color: skill.color }}
+                  />
+                  <span className='text-sm font-medium text-foreground'>
+                    {skillName}
+                  </span>
+                </span>
+              </Chip>
+            );
+          })}
         </div>
       </div>
     </section>
   );
-}
+};

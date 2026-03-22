@@ -2,11 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Sun, Moon, Languages } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@heroui/react';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
 
-export function Navigation() {
+export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -15,34 +15,25 @@ export function Navigation() {
   const { language, setLanguage, t } = useLanguage();
   const headerRef = useRef<HTMLElement>(null);
 
-  // Scroll handling - hide/show header on mobile
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const isMobile = window.innerWidth < 768;
 
-      // Set scrolled state for desktop bubble effect
       setIsScrolled(currentScrollY > 50);
 
       if (!isMobile) {
-        // Desktop: always show header
         setIsHeaderVisible(true);
         return;
       }
 
-      // Mobile: hide/show logic (but not when menu is open)
-      if (isMobileMenuOpen) {
-        // Don't hide header when menu is open
-        return;
-      }
+      if (isMobileMenuOpen) return;
 
       if (currentScrollY < 10) {
         setIsHeaderVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down & past threshold - hide header
         setIsHeaderVisible(false);
       } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show header
         setIsHeaderVisible(true);
       }
 
@@ -53,7 +44,6 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Click outside to close menu
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (isMobileMenuOpen && headerRef.current) {
@@ -65,12 +55,7 @@ export function Navigation() {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside as any);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside as any);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMobileMenuOpen]);
 
   const navLinks = [
@@ -79,11 +64,11 @@ export function Navigation() {
     { href: '/blog', label: t('blog') },
   ];
 
-  const toggleTheme = () => {
+  const handleToggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const toggleLanguage = () => {
+  const handleToggleLanguage = () => {
     setLanguage(language === 'en' ? 'es' : 'en');
   };
 
@@ -101,15 +86,14 @@ export function Navigation() {
       <div
         className={`transition-all duration-300 ease-in-out ${
           isScrolled
-            ? 'container mx-auto px-6 py-3 mt-4 mb-2 max-w-4xl bg-background/85 backdrop-blur-md rounded-full shadow-[0_0_30px_rgba(76,195,255,0.08)] border border-border/70'
-            : 'container mx-auto px-4 py-4 border-b border-border/50'
+            ? 'max-w-4xl mx-auto px-6 py-3 mt-4 mb-2 bg-background/85 backdrop-blur-md rounded-full shadow-[0_0_30px_rgba(76,195,255,0.08)] border border-border/70'
+            : 'max-w-7xl mx-auto px-6 md:px-8 py-4 border-b border-border/50'
         } flex items-center justify-between`}
       >
-        {/* Logo Section */}
         <a
           href='/'
           aria-label='Home'
-          className='flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200'
+          className='flex items-center gap-3 hover:opacity-80 transition-opacity duration-200'
         >
           <div
             className={`${
@@ -127,54 +111,55 @@ export function Navigation() {
           <span
             className={`${
               isScrolled ? 'text-lg' : 'text-xl'
-            } font-bold text-foreground transition-all duration-300 tracking-tight leading-tight wrap-break-word min-h-[1.2em] overflow-visible`}
+            } font-bold text-foreground transition-all duration-300 tracking-tight`}
           >
             {t('portfolio')}
           </span>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className='hidden md:flex items-center space-x-6'>
+        <nav className='hidden md:flex items-center gap-1'>
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 px-3 py-2 rounded-lg hover:bg-accent/10'
+              className='text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 px-4 py-2 rounded-full hover:bg-accent/10'
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Right Side Actions */}
-        <div className='flex items-center space-x-4'>
-          {/* Theme Controls */}
-          <div className='hidden sm:flex items-center space-x-2'>
+        <div className='flex items-center gap-2'>
+          <div className='hidden sm:flex items-center gap-1'>
             <Button
-              variant='ghost'
-              size='icon'
-              onClick={toggleTheme}
-              title='Toggle theme'
-              className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
+              isIconOnly
+              variant='light'
+              size='sm'
+              onPress={handleToggleTheme}
+              aria-label='Toggle theme'
+              className='text-foreground hover:bg-accent/10'
             >
-              {theme === 'dark' && <Moon className='h-5 w-5' />}
-              {theme === 'light' && <Sun className='h-5 w-5' />}
+              {theme === 'dark' ? (
+                <Moon className='h-4 w-4' />
+              ) : (
+                <Sun className='h-4 w-4' />
+              )}
             </Button>
 
             <Button
-              variant='ghost'
-              size='icon'
-              onClick={toggleLanguage}
-              title='Toggle language'
-              className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
+              isIconOnly
+              variant='light'
+              size='sm'
+              onPress={handleToggleLanguage}
+              aria-label='Toggle language'
+              className='text-foreground hover:bg-accent/10'
             >
-              <Languages className='h-5 w-5' />
+              <Languages className='h-4 w-4' />
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
-            className='md:hidden text-foreground transition-all duration-200 hover:text-accent hover:scale-105 active:scale-95 p-2 rounded-xl hover:bg-accent/10'
+            className='md:hidden text-foreground transition-all duration-200 hover:text-accent p-2 rounded-xl hover:bg-accent/10'
             onClick={handleMobileMenuToggle}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             type='button'
@@ -199,27 +184,19 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ease-out ${
           isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div
-          className={`transition-all duration-300 ${
-            isScrolled
-              ? 'bg-card/95 backdrop-blur-md border border-border/70 mx-3 mt-1 mb-2 rounded-2xl shadow-2xl ring-1 ring-border/30'
-              : 'bg-card border-b border-l border-r border-border/70 rounded-b-3xl mx-3 mb-4 shadow-xl ring-1 ring-border/30'
-          }`}
-        >
+        <div className='bg-card/95 backdrop-blur-md border border-border/70 mx-3 mt-1 mb-2 rounded-2xl shadow-2xl ring-1 ring-border/30'>
           <div className='p-6 space-y-6'>
-            {/* Mobile Navigation Links */}
-            <nav className='space-y-2'>
+            <nav className='space-y-1'>
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className='block text-base font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:bg-accent/10 px-3 py-2 rounded-lg'
+                  className='block text-base font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:bg-accent/10 px-4 py-3 rounded-xl'
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -227,23 +204,29 @@ export function Navigation() {
               ))}
             </nav>
 
-            {/* Mobile Theme Controls */}
-            <div className='flex items-center justify-center space-x-4 pt-4 border-t border-border/50'>
+            <div className='flex items-center justify-center gap-2 pt-4 border-t border-border/50'>
               <Button
-                variant='ghost'
-                size='icon'
-                onClick={toggleTheme}
-                className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
+                isIconOnly
+                variant='light'
+                size='sm'
+                onPress={handleToggleTheme}
+                aria-label='Toggle theme'
+                className='text-foreground hover:bg-accent/10'
               >
-                {theme === 'dark' && <Moon className='h-5 w-5' />}
-                {theme === 'light' && <Sun className='h-5 w-5' />}
+                {theme === 'dark' ? (
+                  <Moon className='h-5 w-5' />
+                ) : (
+                  <Sun className='h-5 w-5' />
+                )}
               </Button>
 
               <Button
-                variant='ghost'
-                size='icon'
-                onClick={toggleLanguage}
-                className='transition-all duration-200 hover:bg-accent/10 hover:scale-105 active:scale-95'
+                isIconOnly
+                variant='light'
+                size='sm'
+                onPress={handleToggleLanguage}
+                aria-label='Toggle language'
+                className='text-foreground hover:bg-accent/10'
               >
                 <Languages className='h-5 w-5' />
               </Button>
@@ -253,4 +236,4 @@ export function Navigation() {
       </div>
     </header>
   );
-}
+};

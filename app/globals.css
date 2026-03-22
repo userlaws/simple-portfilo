@@ -1,36 +1,16 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import '@heroui/styles';
 
-/* Ensure proper text rendering for accented characters */
 * {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ensure proper line height for titles with accented characters */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1.2;
-  overflow: visible;
-}
-
-/* Prevent text clipping */
-.text-3xl,
-.text-4xl,
-.text-5xl {
-  line-height: 1.1;
-  overflow: visible;
-}
-
 @custom-variant dark (&:is(.dark *));
 @custom-variant light (&:is(.light *));
 
-/* Dark sci-fi base palette */
 :root {
   --background: #0b0f14;
   --foreground: #e6edf3;
@@ -51,23 +31,9 @@ h6 {
   --border: #1f2a37;
   --input: #111a24;
   --ring: #4cc3ff;
-  --chart-1: #4cc3ff;
-  --chart-2: #22d3ee;
-  --chart-3: #34d399;
-  --chart-4: #a78bfa;
-  --chart-5: #f97316;
   --radius: 0.75rem;
-  --sidebar: #0f141b;
-  --sidebar-foreground: #e6edf3;
-  --sidebar-primary: #4cc3ff;
-  --sidebar-primary-foreground: #0b0f14;
-  --sidebar-accent: #111a24;
-  --sidebar-accent-foreground: #e6edf3;
-  --sidebar-border: #1f2a37;
-  --sidebar-ring: #4cc3ff;
 }
 
-/* Light mode variant */
 .light {
   --background: #f5f7fa;
   --foreground: #0b0f14;
@@ -88,22 +54,8 @@ h6 {
   --border: #dbe3ec;
   --input: #eef2f7;
   --ring: #0ea5e9;
-  --chart-1: #0ea5e9;
-  --chart-2: #22c55e;
-  --chart-3: #f59e0b;
-  --chart-4: #8b5cf6;
-  --chart-5: #ef4444;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #0b0f14;
-  --sidebar-primary: #0ea5e9;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eef2f7;
-  --sidebar-accent-foreground: #0b0f14;
-  --sidebar-border: #dbe3ec;
-  --sidebar-ring: #0ea5e9;
 }
 
-/* Added JetBrains Mono for code/metrics */
 @theme inline {
   --font-sans: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', 'Courier New',
@@ -127,23 +79,10 @@ h6 {
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
@@ -156,119 +95,84 @@ h6 {
     font-family: var(--font-inter), system-ui, sans-serif;
   }
 
-  /* Font family assignments */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-inter), system-ui, sans-serif;
+    line-height: 1.2;
+    overflow: visible;
   }
 
-  code,
-  pre,
-  .font-mono {
+  code, pre, .font-mono {
     font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
   }
 
-  /* Typography System */
-  h1 {
-    @apply text-[34px] leading-[40px] font-bold tracking-[-0.01em];
-  }
-
-  h2 {
-    @apply text-[24px] leading-[32px] font-bold tracking-[-0.01em];
-  }
-
-  h3 {
-    @apply text-[18px] leading-[28px] font-semibold;
-  }
-
-  p {
-    @apply text-[16px] leading-[26px] font-normal;
-  }
-
-  small {
-    @apply text-[14px] leading-[22px] font-normal;
-  }
-
-  /* Code styling */
-  code {
-    @apply bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-sm font-mono;
-  }
-
-  pre {
-    @apply bg-slate-100 text-slate-900 p-4 rounded-lg text-sm font-mono overflow-x-auto;
-  }
-
-  /* Card styling */
-  .card {
-    @apply p-6 md:p-7 rounded-2xl border border-border bg-card shadow-sm;
-  }
-
-  /* Layout improvements */
-  .container {
-    @apply max-w-[1120px] mx-auto px-6 md:px-8;
-  }
-
-  .section {
-    @apply py-16 md:py-24;
-  }
-
-  /* Mobile-first touch improvements */
   html {
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
     scroll-behavior: smooth;
   }
 
-  /* Allow text selection in content areas */
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  span,
-  div[role='text'] {
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
+  p, h1, h2, h3, h4, h5, h6, span, div[role='text'] {
     user-select: text;
   }
 
-  /* Better touch targets */
-  button,
-  a,
-  [role='button'] {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Prevent zoom on input focus on iOS */
-  input,
-  textarea,
-  select {
+  input, textarea, select {
     font-size: 16px;
   }
 }
 
-/* Custom scrollbar for webkit browsers */
 @layer utilities {
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
 }
 
-/* Syntax highlighting for code blocks */
+/* Scroll-triggered reveal animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+.reveal-children > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal-children.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.reveal-children.visible > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
+.reveal-children.visible > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
+.reveal-children.visible > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
+.reveal-children.visible > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
+.reveal-children.visible > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+.reveal-children.visible > *:nth-child(7) { transition-delay: 480ms; opacity: 1; transform: translateY(0); }
+.reveal-children.visible > *:nth-child(8) { transition-delay: 560ms; opacity: 1; transform: translateY(0); }
+
+/* Syntax highlighting for blog code blocks */
 .prose pre {
   background-color: #1e293b;
   color: #e2e8f0;

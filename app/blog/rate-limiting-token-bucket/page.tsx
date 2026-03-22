@@ -1,27 +1,32 @@
 import { Navigation } from '@/components/navigation';
+import { Footer } from '@/components/footer';
+import { ChevronLeft } from 'lucide-react';
 
 export default function RateLimitingPage() {
   return (
     <main className='min-h-screen'>
       <Navigation />
-      <div className='container mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-20 max-w-4xl'>
-        <div className='space-y-6 sm:space-y-8'>
-          <div className='text-center sm:text-left py-2'>
-            <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight wrap-break-word min-h-[1.2em] overflow-visible pb-1'>
+      <div className='max-w-4xl mx-auto px-6 md:px-8 pt-28 pb-16'>
+        <div className='space-y-8'>
+          <div className='text-center space-y-4'>
+            <span className='inline-flex text-xs bg-accent/10 px-3 py-1 rounded-full text-accent border border-accent/20'>
+              Tutorials
+            </span>
+            <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight'>
               Rate limiting 101: token bucket in 25 lines
             </h1>
-            <p className='text-lg sm:text-xl text-muted-foreground max-w-3xl wrap-break-word leading-relaxed'>
+            <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
               TS implementation + where to enforce (edge vs app). Token math,
               burst vs steady-state, global vs per-user keys, testing with fake
               timers.
             </p>
           </div>
 
-          <div className='prose prose-slate max-w-none'>
+          <div className='prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-p:text-base prose-p:leading-relaxed prose-a:text-accent hover:prose-a:text-accent/80'>
             <h2>Why</h2>
             <p>
               Rate limiting prevents API abuse and ensures fair usage, but many
-              implementations are overly complex or don't handle edge cases
+              implementations are overly complex or don&apos;t handle edge cases
               well. A simple token bucket algorithm can solve most rate limiting
               needs.
             </p>
@@ -38,7 +43,7 @@ export default function RateLimitingPage() {
             </ul>
 
             <h2>Code</h2>
-            <pre className='bg-slate-100 p-4 rounded-lg overflow-x-auto'>
+            <pre className='bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto'>
               <code className='text-sm'>{`class TokenBucket {
   private tokens: number;
   private lastRefill: number;
@@ -88,25 +93,30 @@ export default function RateLimitingPage() {
             <h2>References</h2>
             <ul>
               <li>
-                <a
-                  href='https://en.wikipedia.org/wiki/Token_bucket'
-                  className='text-primary hover:text-primary/80'
-                >
+                <a href='https://en.wikipedia.org/wiki/Token_bucket'>
                   Token Bucket Algorithm
                 </a>
               </li>
               <li>
-                <a
-                  href='https://redis.io/docs/manual/rate-limiting/'
-                  className='text-primary hover:text-primary/80'
-                >
+                <a href='https://redis.io/docs/manual/rate-limiting/'>
                   Redis Rate Limiting
                 </a>
               </li>
             </ul>
           </div>
+
+          <div className='pt-8 border-t border-border/50'>
+            <a
+              href='/blog'
+              className='inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors'
+            >
+              <ChevronLeft className='w-4 h-4' />
+              Back to Blog
+            </a>
+          </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

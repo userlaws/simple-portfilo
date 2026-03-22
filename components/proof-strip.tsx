@@ -1,37 +1,38 @@
 'use client';
 
+import { Separator } from '@heroui/react';
 import { useLanguage } from '@/contexts/language-context';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
-export function ProofStrip() {
+export const ProofStrip = () => {
   const { t } = useLanguage();
+  const ref = useScrollReveal();
 
   const metrics = [
     { label: t('cicd'), value: t('cicdValue') },
-    { label: t('authProviders'), value: t('authProvidersValue') },
     { label: t('dbsShipped'), value: t('dbsShippedValue') },
     { label: t('ciPipelines'), value: t('ciPipelinesValue') },
     { label: t('osMaintained'), value: t('osMaintainedValue') },
   ];
 
   return (
-    <section className='px-4 sm:px-6 lg:px-12 py-8 sm:py-12 border-t border-border/70 bg-card/40'>
-      <div className='max-w-6xl mx-auto'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8'>
+    <section className='px-6 md:px-8 py-12 md:py-16'>
+      <div ref={ref} className='reveal max-w-5xl mx-auto'>
+        <Separator className='bg-border/50 mb-12' />
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12'>
           {metrics.map((metric) => (
-            <div
-              key={metric.label}
-              className='space-y-2 text-center sm:text-left min-w-0'
-            >
-              <p className='text-sm text-muted-foreground wrap-break-word'>
+            <div key={metric.label} className='space-y-2 text-center'>
+              <p className='text-xs uppercase tracking-wider text-muted-foreground'>
                 {metric.label}
               </p>
-              <p className='text-lg sm:text-xl lg:text-2xl font-mono font-semibold wrap-break-word text-foreground'>
+              <p className='text-base sm:text-lg font-mono font-semibold text-foreground'>
                 {metric.value}
               </p>
             </div>
           ))}
         </div>
+        <Separator className='bg-border/50 mt-12' />
       </div>
     </section>
   );
-}
+};
