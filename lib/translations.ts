@@ -9,7 +9,9 @@ export const translations = {
     // Hero
     heroTitle: 'Building reliable software with Python/Java, SQL, and React.',
     heroSubtitle:
-      'CS & InfoSec student (NYC) targeting Associate Software Engineer, Junior Full-Stack Engineer, and Software Engineer I roles in CUNY/public sector tech and product-focused startups. Built invite-code workflows for group creation, wishlists, gift claiming, and participation tracking; ship Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, and GitHub Actions CI/CD.',
+      'Full-stack engineer in NYC. iOS, web, and the Linux box they run on.',
+    contactTagline:
+      'Open to Associate Software Engineer and Junior Full-Stack roles.',
     signalOnline: 'Signal Online',
     aboutMeTitle: 'About Me',
     aboutMeBody:
@@ -195,6 +197,9 @@ export const translations = {
     projectsDiscordVCLeaderboardTitle: 'Discord VC Leaderboard',
     projectsDiscordVCLeaderboardDesc:
       'A Discord bot that tracks voice channel activity and creates leaderboards. Features real-time tracking, weekly/monthly rankings, and customizable settings for server administrators.',
+    projectsJJAYCompanionTitle: 'JJAY Campus Companion',
+    projectsJJAYCompanionDesc:
+      'A consumer-facing iOS app shipped to the Apple App Store, serving thousands of John Jay College students across classes, events, campus maps, and professor reviews.',
 
     // Footer
     footerCopyright: '© 2025 Imanol Aracena. All rights reserved.',
@@ -220,7 +225,9 @@ export const translations = {
     // Hero
     heroTitle: 'Construyendo software confiable con Python/Java, SQL y React.',
     heroSubtitle:
-      'Estudiante de CS e InfoSec (NYC) buscando roles de Associate Software Engineer, Junior Full-Stack Engineer y Software Engineer I en CUNY/sector público y startups enfocadas en producto. Implementé workflows con códigos de invitación para creación de grupos, wishlists, reclamación de regalos y seguimiento de participación; desarrollo con Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker y GitHub Actions CI/CD.',
+      'Ingeniero full-stack en NYC. iOS, web, y el servidor Linux donde corren.',
+    contactTagline:
+      'Disponible para roles de Associate Software Engineer y Junior Full-Stack.',
     signalOnline: 'Señal en línea',
     aboutMeTitle: 'Sobre mí',
     aboutMeBody:
@@ -410,6 +417,9 @@ export const translations = {
     projectsDiscordVCLeaderboardTitle: 'Discord VC Leaderboard',
     projectsDiscordVCLeaderboardDesc:
       'Bot de Discord que rastrea actividad en canales de voz y crea tablas de clasificación. Incluye seguimiento en tiempo real y rankings.',
+    projectsJJAYCompanionTitle: 'JJAY Campus Companion',
+    projectsJJAYCompanionDesc:
+      'App iOS para consumidores publicada en el Apple App Store, sirviendo a miles de estudiantes de John Jay College en clases, eventos, mapas del campus y reseñas de profesores.',
 
     // Footer
     footerCopyright: '© 2025 Imanol Aracena. Todos los derechos reservados.',

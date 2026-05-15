@@ -1,7 +1,16 @@
 'use client';
 
-import { Card, Chip } from '@heroui/react';
-import { ExternalLink } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+
+type SpanClass =
+  | 'span-3'
+  | 'span-4'
+  | 'span-5'
+  | 'span-6'
+  | 'span-7'
+  | 'span-8'
+  | 'span-9'
+  | 'span-12';
 
 interface ProjectCardProps {
   title: string;
@@ -9,6 +18,7 @@ interface ProjectCardProps {
   description: string;
   href: string;
   featured?: boolean;
+  span?: SpanClass;
 }
 
 export const ProjectCard = ({
@@ -17,51 +27,50 @@ export const ProjectCard = ({
   description,
   href,
   featured = false,
+  span = 'span-6',
 }: ProjectCardProps) => {
+  const isExternal = href.startsWith('http');
+
   return (
     <a
       href={href}
-      target='_blank'
-      rel='noopener noreferrer'
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
       aria-label={`${title} project`}
-      className='block group'
+      tabIndex={0}
+      className={`block group ${span}`}
     >
-      <Card
-        variant='bordered'
-        className={`border-border/70 bg-card/70 hover:border-accent/50 hover:shadow-[0_0_40px_rgba(76,195,255,0.06)] transition-all duration-300 shadow-none ${
-          featured ? 'md:col-span-2' : ''
+      <article
+        className={`tile tile-interactive h-full ${
+          featured ? 'tile-featured' : ''
         }`}
       >
-        <Card.Content className={`${featured ? 'p-8 md:p-10' : 'p-6 md:p-8'} space-y-4`}>
-          <div className='flex items-start justify-between gap-4'>
-            <div className='space-y-4 flex-1'>
-              <div className='flex flex-wrap gap-2'>
-                {tags.map((tag) => (
-                  <Chip
-                    key={tag}
-                    variant='bordered'
-                    size='sm'
-                    className='border-border/70 text-muted-foreground group-hover:border-accent/40 transition-colors text-xs'
-                  >
-                    {tag}
-                  </Chip>
-                ))}
-              </div>
-              <h3
-                className={`${
-                  featured ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'
-                } font-bold text-foreground group-hover:text-accent transition-colors duration-300`}
-              >
-                {title}
-              </h3>
-              <p className='text-base text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300'>
-                {description}
-              </p>
-            </div>
-            <ExternalLink className='w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors shrink-0 mt-1' />
-          </div>
-        </Card.Content>
-      </Card>
+        <header className='flex items-start justify-between gap-4 mb-4'>
+          <ul className='flex flex-wrap gap-2'>
+            {tags.map((tag) => (
+              <li key={tag} className='chip'>
+                {tag}
+              </li>
+            ))}
+          </ul>
+          <ArrowUpRight
+            className='w-5 h-5 text-[var(--mute)] group-hover:text-[var(--accent)] transition-colors shrink-0'
+            aria-hidden='true'
+          />
+        </header>
+
+        <h3
+          className={`display-md ${
+            featured ? 'text-[40px] sm:text-[48px]' : 'text-[28px] sm:text-[32px]'
+          } group-hover:text-[var(--accent)] transition-colors`}
+        >
+          {title}
+        </h3>
+
+        <p className='mt-3 text-[15px] text-[var(--mute)] leading-relaxed'>
+          {description}
+        </p>
+      </article>
     </a>
   );
 };

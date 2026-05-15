@@ -1,7 +1,16 @@
 export const themeScript = `
   (function() {
-    const storedTheme = localStorage.getItem('theme');
-    const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
-    document.documentElement.classList.add(theme);
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+      document.documentElement.classList.add(theme);
+      if (document.body) {
+        document.body.setAttribute('data-theme', theme);
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          document.body.setAttribute('data-theme', theme);
+        });
+      }
+    } catch (e) {}
   })();
 `;
