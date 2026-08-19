@@ -11,17 +11,17 @@ const path = require('path');
 const yourResumeData = {
   personalInfo: {
     name: 'Imanol Aracena',
-    title: 'Computer Science & Information Security Student',
+    title: 'Computer Science & Information Security Graduate',
     location: 'New York, NY 10022',
     email: 'imanol.aracena@jjay.cuny.edu',
     phone: '718-414-5770',
     linkedin: 'linkedin.com/in/imanolaracena',
     github: 'github.com/userlaws',
-    website: 'imanol-aracena.dev',
+    website: 'userlaws.dev',
   },
 
   summary:
-    'Computer Science & Information Security student with hands-on experience in full-stack development, IT support, and cybersecurity. Building reliable software with modern technologies and maintaining 99.9% uptime systems.',
+    'Computer Science & Information Security graduate with hands-on experience in full-stack development, IT support, and cybersecurity. Building reliable software with modern technologies and maintaining 99.9% uptime systems.',
 
   skills: {
     languages: [
@@ -64,7 +64,7 @@ const yourResumeData = {
       title: 'IT Help Desk Technician',
       company: 'Guttman Community College',
       location: 'New York, NY',
-      duration: 'Nov 2022 – Current',
+      duration: 'Nov 2022 to Current',
       description:
         'Resolve more than forty hardware software and network tickets each week achieving a first call resolution rate of ninety five percent. Image and deploy over two hundred Windows laptops and computers using SCCM.',
       achievements: [
@@ -80,7 +80,7 @@ const yourResumeData = {
       title: 'IT Help Desk Intern',
       company: 'Progress Technology Solutions, Inc',
       location: 'New York, NY',
-      duration: 'June 2023 – Aug 2023',
+      duration: 'June 2023 to Aug 2023',
       description:
         'Conducted comprehensive review of Office 365 and administered portal functionalities. Successfully obtained certification within a one-week timeframe and set up a server using Ubuntu OS.',
       achievements: [
@@ -100,31 +100,6 @@ const yourResumeData = {
   ],
 
   projects: [
-    {
-      name: 'Gift Whisper',
-      type: 'Anonymous gift exchange platform',
-      description:
-        'Anonymous gift-exchange web platform that lets friends and family create private groups, build wishlists, claim gifts, and track participation while keeping givers secret until the reveal.',
-      technologies: [
-        'Next.js',
-        'React',
-        'TypeScript',
-        'Tailwind CSS',
-        'Node.js',
-        'Express',
-        'Prisma ORM',
-        'PostgreSQL',
-      ],
-      link: 'https://github.com/userlaws/gift-whisper',
-      features: [
-        'Anonymous gift exchange system',
-        'Private group management',
-        'Wishlist creation and claiming',
-        'Encrypted session management',
-        'Invite-code workflow',
-      ],
-      duration: 'May 2025 – July 2025',
-    },
     {
       name: 'NoteShare',
       type: 'Collaborative study hub',
@@ -151,7 +126,7 @@ const yourResumeData = {
         'Role-based access control',
         '99.9% uptime with CI/CD',
       ],
-      duration: 'Mar 2025 – Current',
+      duration: 'Mar 2025 to Current',
     },
   ],
 
@@ -159,7 +134,7 @@ const yourResumeData = {
     degree: 'Bachelor of Science in Computer Science & Information Security',
     institution: 'John Jay College of Criminal Justice',
     location: 'Manhattan, NY',
-    graduationDate: 'June 2023 – Dec 2025',
+    graduationDate: 'June 2023 to Dec 2025',
     gpa: '3.0/4.0',
     relevantCourses: [
       'Computer Architecture',
@@ -177,7 +152,7 @@ const yourResumeData = {
     degree: 'Associates of Science Information Technology',
     institution: 'Guttman Community College',
     location: 'Manhattan, NY',
-    graduationDate: 'Aug 2021 – June 2023',
+    graduationDate: 'Aug 2021 to June 2023',
     relevantCourses: [
       'Hardware & Software',
       'Networking & Data Communications',

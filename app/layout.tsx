@@ -22,25 +22,26 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://userlaws.dev'),
   title:
-    'Imanol Aracena | Associate Software Engineer | Junior Full-Stack Engineer',
+    'Imanol Aracena | Associate Software Engineer | Junior Full-Stack | IT Support/Systems',
   description:
-    'CS & InfoSec student in NYC targeting Associate Software Engineer, Junior Full-Stack Engineer, and Software Engineer I roles. Built invite-code workflows for group creation, wishlists, gift claiming, and participation tracking. Stack: Next.js, React, Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, GitHub Actions CI/CD.',
-  generator: 'imanol-aracena.dev',
+    'CS & InfoSec graduate in NYC. Full-stack engineering and IT systems/support. Builds iOS and web apps. Campus IT: SCCM, Active Directory, Microsoft 365. Next.js, React, Node.js, TypeScript, PostgreSQL.',
+  generator: 'userlaws.dev',
   openGraph: {
     title:
-      'Imanol Aracena | Associate Software Engineer | Software Engineer I',
+      'Imanol Aracena | Associate Software Engineer | Junior Full-Stack | IT Support/Systems',
     description:
-      'CS & InfoSec student in NYC targeting Associate Software Engineer and Junior Full-Stack Engineer roles for CUNY/public sector tech and product-focused startups. Built invite-code workflows with Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, GitHub Actions CI/CD.',
+      'CS & InfoSec graduate in NYC. Full-stack engineering and IT systems/support. Builds iOS and web apps. Campus IT: SCCM, Active Directory, Microsoft 365. Next.js, React, Node.js, TypeScript, PostgreSQL.',
     images: ['/metadata.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title:
-      'Imanol Aracena | Associate Software Engineer | Junior Full-Stack Engineer',
+      'Imanol Aracena | Associate Software Engineer | Junior Full-Stack | IT Support/Systems',
     description:
-      'CS & InfoSec student in NYC targeting Associate Software Engineer and Software Engineer I roles. Invite-code workflows, group creation, wishlists, gift claiming, participation tracking. Next.js/React/Node.js, TypeScript, SQL/PostgreSQL, AWS/Vercel, Docker, GitHub Actions CI/CD.',
+      'Full-stack engineer in NYC. CS & InfoSec graduate. Full-stack engineering and IT systems/support. Next.js, React, Node.js, TypeScript, PostgreSQL.',
     images: ['/metadata.png'],
   },
 };

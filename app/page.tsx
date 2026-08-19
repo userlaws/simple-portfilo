@@ -23,6 +23,7 @@ export default function Home() {
   const services = useServices();
   const stack = useStack();
   const stats = useStats();
+  const itItems = useItItems();
   const marqueeTags = MARQUEE_TAGS;
 
   return (
@@ -104,6 +105,23 @@ export default function Home() {
           </div>
         </section>
 
+        {/* IT & SYSTEMS ───────────────────── */}
+        <section aria-label='IT and systems' className='mt-12'>
+          <SectionHeader
+            heading={
+              <>
+                IT & <span className='text-accent'>Systems.</span>
+              </>
+            }
+            count={itItems.length}
+            countLabel='AREAS'
+          />
+
+          <div className='bento mt-6'>
+            <ItSystemsTile items={itItems} />
+          </div>
+        </section>
+
         {/* HOMELAB ────────────────────────── */}
         <section aria-label='Homelab' className='mt-12'>
           <SectionHeader
@@ -181,7 +199,7 @@ const HeroTile = () => {
       style={{ animationDelay: '0ms' }}
     >
       <div className='flex items-center gap-3'>
-        <span className='mono-label'>— PORTFOLIO</span>
+        <span className='mono-label'>PORTFOLIO</span>
         <span className='mono-label text-[var(--dim)]'>NYC · 2026</span>
       </div>
 
@@ -220,7 +238,7 @@ const HeroTile = () => {
 };
 
 /* ─────────────────────────────────────────────────────────────
-   Now tile (4-col) — avatar, time, typewriter, meta rows
+   Now tile (4-col): avatar, time, typewriter, meta rows
    ───────────────────────────────────────────────────────────── */
 const ROLE_ROTATION = [
   'Full-Stack Developer',
@@ -309,7 +327,7 @@ const SectionHeader = ({
 );
 
 /* ─────────────────────────────────────────────────────────────
-   Project tile — varied spans, expandable details
+   Project tile: varied spans, expandable details
    ───────────────────────────────────────────────────────────── */
 type Project = {
   title: string;
@@ -317,7 +335,7 @@ type Project = {
   blurb: string;
   tags: string[];
   href: string;
-  span: 'span-4' | 'span-6' | 'span-8';
+  span: 'span-4' | 'span-6' | 'span-8' | 'span-12';
   featured?: boolean;
   bullets?: string[];
 };
@@ -432,6 +450,41 @@ const ProjectTile = ({
 };
 
 /* ─────────────────────────────────────────────────────────────
+   IT & Systems tile (12-col)
+   ───────────────────────────────────────────────────────────── */
+const ItSystemsTile = ({ items }: { items: string[] }) => {
+  const { t } = useLanguage();
+
+  return (
+    <article className='tile tile-interactive span-12 fade-up flex flex-col'>
+      <header className='flex items-center justify-between mb-5'>
+        <span className='mono-label'>{t('itRolePeriod')}</span>
+        <span className='mono-label text-[var(--dim)]'>{t('itRoleOrg')}</span>
+      </header>
+
+      <h3 className='display-md text-[40px] sm:text-[48px]'>
+        {t('itRoleTitle')}
+      </h3>
+
+      <p className='mt-3 text-[15px] text-[var(--mute)] leading-relaxed max-w-[60ch]'>
+        {t('itRoleBlurb')}
+      </p>
+
+      <ul className='mt-6 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-[14px] text-[var(--mute)]'>
+        {items.map((item) => (
+          <li key={item} className='flex gap-2'>
+            <span className='text-[var(--accent)]' aria-hidden='true'>
+              ›
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────
    Bio tile (5-col)
    ───────────────────────────────────────────────────────────── */
 const BioTile = () => {
@@ -440,14 +493,14 @@ const BioTile = () => {
 
   return (
     <article className='tile tile-interactive span-5 fade-up'>
-      <p className='mono-label'>— LIVE · INFRA</p>
+      <p className='mono-label'>LIVE · INFRA</p>
       <h3 className='display-md mt-3 text-[28px]'>
         I run my own <span className='text-accent'>stack</span>, end-to-end.
       </h3>
       <p className='mt-4 text-[15px] text-[var(--mute)] leading-relaxed'>
         A self-administered Arch box I maintain entirely, over SSH. It hosts
         userlaws.dev, Discord bots, and game servers for friends. Previews
-        might mix Linux. No managed services — every break is mine to fix.
+        might mix Linux. No managed services. Every break is mine to fix.
       </p>
       <ul className='mt-6 flex flex-wrap gap-2'>
         {tech.map((item) => (
@@ -470,7 +523,7 @@ const NeofetchTile = ({ services }: { services: Service[] }) => (
   <article className='tile span-7 fade-up' style={{ padding: 18 }}>
     <div className='terminal'>
       <div className='terminal-bar'>
-        <span>userlaws.dev — 1 selected</span>
+        <span>userlaws.dev · 1 selected</span>
         <span className='inline-flex items-center gap-2'>
           <span className='status-dot' aria-hidden='true' /> 27D 4H 12M
         </span>
@@ -563,7 +616,7 @@ const ContactTile = () => {
       />
       <div className='relative'>
         <p className='mono-label'>
-          — LET&apos;S BUILD SOMETHING
+          LET&apos;S BUILD SOMETHING
         </p>
         <h2 className='display-lg mt-4 text-[clamp(48px,9vw,120px)]'>
           Say <span className='text-accent'>hello.</span>
@@ -660,7 +713,7 @@ const useLocalTime = (timeZone: string) => {
 };
 
 /* ─────────────────────────────────────────────────────────────
-   Data — projects, services, stack, stats, marquee tags
+   Data: projects, services, stack, stats, marquee tags
    Add new entries below; markup above stays untouched.
    ───────────────────────────────────────────────────────────── */
 const useProjects = (): Project[] => {
@@ -669,7 +722,7 @@ const useProjects = (): Project[] => {
     () => [
       {
         title: t('projectsJJAYCompanionTitle'),
-        period: 'NOV 2024 — ONGOING',
+        period: 'NOV 2024 TO ONGOING',
         blurb: t('projectsJJAYCompanionDesc'),
         tags: [
           'React Native',
@@ -683,7 +736,7 @@ const useProjects = (): Project[] => {
         span: 'span-8',
         featured: true,
         bullets: [
-          'Shipped to Apple App Store; thousands of John Jay students',
+          'Shipped to the Apple App Store for John Jay College students',
           'Component-based RN UI across 5 tabs w/ dark/light theming',
           '15 RLS-enabled Supabase tables + Edge Functions for event ingest',
           'Iterated through multiple App Store review cycles',
@@ -691,7 +744,7 @@ const useProjects = (): Project[] => {
       },
       {
         title: t('projectsNoteShareTitle'),
-        period: 'MAR 2025 — ONGOING',
+        period: 'MAR 2025 TO ONGOING',
         blurb: t('projectsNoteShareDesc'),
         tags: [
           'Next.js',
@@ -710,18 +763,32 @@ const useProjects = (): Project[] => {
         ],
       },
       {
-        title: t('projectsGiftWhispererTitle'),
-        period: 'MAY 2025 — JUL 2025',
-        blurb: t('projectsGiftWhispererDesc'),
-        tags: ['React', 'TypeScript', 'Express', 'Prisma', 'PostgreSQL'],
-        href: 'https://christmas-list-peach.vercel.app/',
+        title: t('projectsCoffeeChatTitle'),
+        period: '2025 TO 2026',
+        blurb: t('projectsCoffeeChatDesc'),
+        tags: ['Next.js', 'React', 'Tailwind', 'Neon', 'Drizzle', 'PWA'],
+        href: '#',
         span: 'span-12',
-        bullets: [
-          'CRUD: groups, wishlists, gift claiming, participation tracking',
-          'Encrypted-cookie sessions w/ invite-code-based auth',
-          'Node.js / Express REST API backed by Prisma + PostgreSQL',
-        ],
       },
+    ],
+    [t]
+  );
+};
+
+const useItItems = () => {
+  const { t } = useLanguage();
+  return useMemo(
+    () => [
+      t('itItemEndpoint'),
+      t('itItemAD'),
+      t('itItemM365'),
+      t('itItemEmail'),
+      t('itItemVuln'),
+      t('itItemPowerShell'),
+      t('itItemNetwork'),
+      t('itItemServiceNow'),
+      t('itItemMfaGuide'),
+      t('itItemVendor'),
     ],
     [t]
   );
@@ -750,11 +817,15 @@ const useStack = () => {
       },
       {
         title: t('technologies'),
-        items: ['Next.js', 'React', 'Node.js', 'Express', 'Tailwind CSS'],
+        items: ['Next.js', 'React', 'Node.js', 'Express', 'Tailwind CSS', 'PostgreSQL'],
       },
       {
         title: t('tools'),
-        items: ['Git', 'GitHub Actions', 'Docker', 'VS Code', 'Figma', 'Adobe Photoshop', 'Adobe Premiere'],
+        items: ['Git', 'GitHub Actions', 'Docker', 'VS Code', 'Cursor', 'Figma', 'Adobe Photoshop', 'Adobe Premiere'],
+      },
+      {
+        title: t('sysadmin'),
+        items: ['SCCM', 'Active Directory', 'PowerShell', 'ServiceNow', 'Proofpoint', 'Tenable/Nessus'],
       },
       {
         title: t('security'),

@@ -16,7 +16,7 @@ const resumeData = {
   },
 
   summary:
-    'Building reliable software with Python/Java, SQL, and React. CS & InfoSec student available FT Jan 2026.',
+    'Building reliable software with Python/Java, SQL, and React. CS & InfoSec graduate. Degree conferred January 2026.',
 
   skills: {
     languages: ['Python', 'Java', 'TypeScript', 'SQL', 'JavaScript'],

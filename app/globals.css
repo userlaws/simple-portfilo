@@ -7,7 +7,7 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Design tokens — Bento Grid + AI-Native UI
+   Design tokens: Bento Grid + AI-Native UI
    ───────────────────────────────────────────────────────────── */
 :root {
   /* Dark (default) */
@@ -60,7 +60,7 @@
     0 24px 60px rgba(20, 20, 15, 0.12);
 }
 
-/* Tailwind v4 theme — alias new tokens to existing utility names so legacy
+/* Tailwind v4 theme: alias new tokens to existing utility names so legacy
    pages (/projects, /blog) keep rendering correctly without rewrites. */
 @theme inline {
   --font-sans: var(--font-space-grotesk), 'Space Grotesk', system-ui,

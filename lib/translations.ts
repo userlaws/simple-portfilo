@@ -11,7 +11,7 @@ export const translations = {
     heroSubtitle:
       'Full-stack engineer in NYC. iOS, web, and the Linux box they run on.',
     contactTagline:
-      'Open to Associate Software Engineer and Junior Full-Stack roles.',
+      'Open to Associate Software Engineer, Junior Full-Stack, and IT Support/Systems roles.',
     signalOnline: 'Signal Online',
     aboutMeTitle: 'About Me',
     aboutMeBody:
@@ -112,33 +112,28 @@ export const translations = {
       'Bachelor of Science in Computer Science & Information Security',
     educationInstitution: 'John Jay College of Criminal Justice',
     educationLocation: 'Manhattan, NY',
-    educationDetails: 'June 2023 – Dec 2025 • GPA: 3.0/4.0',
+    educationDetails: 'June 2023 to Dec 2025 • GPA: 3.0/4.0',
     experience1Title: 'IT Help Desk Technician',
     experience1Company: 'Guttman Community College',
-    experience1Duration: 'Nov 2022 – Current',
+    experience1Duration: 'Nov 2022 to Current',
     experience1Desc:
       'Resolve more than forty hardware software and network tickets each week achieving a first call resolution rate of ninety five percent. Image and deploy over two hundred Windows laptops and computers using SCCM.',
 
     experience2Title: 'IT Help Desk Intern',
     experience2Company: 'Progress Technology Solutions, Inc',
-    experience2Duration: 'June 2023 – Aug 2023',
+    experience2Duration: 'June 2023 to Aug 2023',
     experience2Desc:
       'Conducted comprehensive review of Office 365 and administered portal functionalities. Successfully obtained certification within a one-week timeframe and set up a server using Ubuntu OS.',
 
-    project1Name: 'Gift Whisper',
-    project1Type: 'Anonymous gift exchange platform',
+    project1Name: 'NoteShare',
+    project1Type: 'Collaborative study hub',
     project1Desc:
-      'Anonymous gift-exchange web platform that lets friends and family create private groups, build wishlists, claim gifts, and track participation while keeping givers secret until the reveal.',
-
-    project2Name: 'NoteShare',
-    project2Type: 'Collaborative study hub',
-    project2Desc:
-      'Collaborative study hub where students upload lecture notes and study guides, discover resources through intelligent search and tagging, and discuss material in real-time community threads.',
+      'A full-stack collaborative study platform with Supabase Postgres, row-level security, full-text search, and Google/Discord OAuth.',
 
     // Personal Information
     personalInfo: 'Personal Information',
     personalName: 'Imanol Aracena',
-    personalTitle: 'Computer Science & Information Security Student',
+    personalTitle: 'Computer Science & Information Security Graduate',
     personalLocation: 'New York, NY 10022',
     personalEmail: 'imanol.aracena@jjay.cuny.edu',
     personalPhone: '718-414-5770',
@@ -181,10 +176,10 @@ export const translations = {
     // Projects
     projectsNoteShareTitle: 'NoteShare',
     projectsNoteShareDesc:
-      "This is my project that I made for myself to learn. It's a website that allows you to share notes with your friends.",
-    projectsGiftWhispererTitle: 'Gift Whisperer',
-    projectsGiftWhispererDesc:
-      'The anonymous gift exchange platform for friends and family. Create wishlists, claim gifts, and keep the surprise alive this holiday season—or any season!',
+      'A full-stack collaborative study platform with Supabase Postgres, row-level security, full-text search, and Google/Discord OAuth.',
+    projectsCoffeeChatTitle: 'CoffeeChat',
+    projectsCoffeeChatDesc:
+      'A paid client project. A PWA built on Next.js App Router with Neon Postgres, Drizzle ORM, Better Auth, MapKit JS, and an Anthropic-powered assistant.',
     projectsPortfolioTitle: 'Personal Portfolio',
     projectsPortfolioDesc:
       'This is my official portfolio site showcasing my projects and skills as a full-stack developer.',
@@ -199,10 +194,35 @@ export const translations = {
       'A Discord bot that tracks voice channel activity and creates leaderboards. Features real-time tracking, weekly/monthly rankings, and customizable settings for server administrators.',
     projectsJJAYCompanionTitle: 'JJAY Campus Companion',
     projectsJJAYCompanionDesc:
-      'A consumer-facing iOS app shipped to the Apple App Store, serving thousands of John Jay College students across classes, events, campus maps, and professor reviews.',
+      'A production iOS app on the App Store for John Jay College students. Classes, events, campus maps, and professor reviews.',
+
+    // IT & Systems
+    sysadmin: 'Sysadmin',
+    itRoleTitle: 'IT Support Specialist',
+    itRolePeriod: 'NOV 2022 TO PRESENT',
+    itRoleOrg: 'GUTTMAN · CUNY',
+    itRoleBlurb:
+      'Promoted from Help Desk Assistant to College Assistant / IT Ambassador in June 2024.',
+    itItemEndpoint:
+      'Endpoint management: imaged and deployed 200+ Windows machines via SCCM and PXE boot, including post-image config and software deployment',
+    itItemAD: 'Active Directory: users, groups, GPOs',
+    itItemM365:
+      'Microsoft 365 administration and Exchange Online, supported a student email tenant migration',
+    itItemEmail:
+      'Email infrastructure: DKIM signing and DNS CNAME configuration across CampusGroups, Constant Contact, and Slate. Proofpoint mail relay troubleshooting, sender IP whitelisting, MX record fixes',
+    itItemVuln:
+      'Vulnerability management: Tenable/Nessus review and remediation coordination',
+    itItemPowerShell: 'PowerShell scripting for admin automation',
+    itItemNetwork:
+      'Networking: VLAN migration and switch port work, VPN, DNS, DHCP',
+    itItemServiceNow:
+      'ServiceNow: full ticket lifecycle plus reporting dashboards for IT queues',
+    itItemMfaGuide:
+      'Authored the CUNY Login MFA Tool Training Guide used by help desk staff',
+    itItemVendor: 'Vendor evaluation work (Varonis data security)',
 
     // Footer
-    footerCopyright: '© 2025 Imanol Aracena. All rights reserved.',
+    footerCopyright: '© 2026 Imanol Aracena. All rights reserved.',
 
     // Common
     loading: 'Loading...',
@@ -227,7 +247,7 @@ export const translations = {
     heroSubtitle:
       'Ingeniero full-stack en NYC. iOS, web, y el servidor Linux donde corren.',
     contactTagline:
-      'Disponible para roles de Associate Software Engineer y Junior Full-Stack.',
+      'Disponible para roles de Associate Software Engineer, Junior Full-Stack e IT Support/Systems.',
     signalOnline: 'Señal en línea',
     aboutMeTitle: 'Sobre mí',
     aboutMeBody:
@@ -330,35 +350,30 @@ export const translations = {
       'Licenciatura en Ciencias de la Computación y Seguridad de la Información',
     educationInstitution: 'John Jay College of Criminal Justice',
     educationLocation: 'Manhattan, NY',
-    educationDetails: 'Junio 2023 – Dic 2025 • GPA: 3.0/4.0',
+    educationDetails: 'Junio 2023 a Dic 2025 • GPA: 3.0/4.0',
 
     experience1Title: 'Técnico de Mesa de Ayuda de TI',
     experience1Company: 'Guttman Community College',
-    experience1Duration: 'Nov 2022 – Actual',
+    experience1Duration: 'Nov 2022 a Actual',
     experience1Desc:
       'Resuelvo más de cuarenta tickets de hardware, software y red cada semana logrando una tasa de resolución en primera llamada del noventa y cinco por ciento. Imagen y despliego más de doscientos laptops y computadoras Windows usando SCCM.',
 
     experience2Title: 'Pasante de Mesa de Ayuda de TI',
     experience2Company: 'Progress Technology Solutions, Inc',
-    experience2Duration: 'Junio 2023 – Ago 2023',
+    experience2Duration: 'Junio 2023 a Ago 2023',
     experience2Desc:
       'Realicé una revisión integral de Office 365 y administré funcionalidades del portal. Obtuve exitosamente la certificación en un plazo de una semana y configuré un servidor usando Ubuntu OS.',
 
-    project1Name: 'Gift Whisper',
-    project1Type: 'Plataforma de intercambio de regalos anónima',
+    project1Name: 'NoteShare',
+    project1Type: 'Centro de estudio colaborativo',
     project1Desc:
-      'Plataforma web de intercambio de regalos anónima que permite a amigos y familiares crear grupos privados, construir listas de deseos, reclamar regalos y rastrear participación mientras mantiene a los donantes en secreto hasta la revelación.',
-
-    project2Name: 'NoteShare',
-    project2Type: 'Centro de estudio colaborativo',
-    project2Desc:
-      'Centro de estudio colaborativo donde los estudiantes suben notas de conferencias y guías de estudio, descubren recursos a través de búsqueda inteligente y etiquetado, y discuten material en hilos de comunidad en tiempo real.',
+      'Plataforma full-stack de estudio colaborativo con Supabase Postgres, seguridad a nivel de fila, búsqueda de texto completo y OAuth de Google/Discord.',
 
     // Personal Information
     personalInfo: 'Información Personal',
     personalName: 'Imanol Aracena',
     personalTitle:
-      'Estudiante de Ciencias de la Computación y Seguridad de la Información',
+      'Graduado en Ciencias de la Computación y Seguridad de la Información',
     personalLocation: 'Nueva York, NY 10022',
     personalEmail: 'imanol.aracena@jjay.cuny.edu',
     personalPhone: '718-414-5770',
@@ -401,10 +416,10 @@ export const translations = {
     // Projects
     projectsNoteShareTitle: 'NoteShare',
     projectsNoteShareDesc:
-      'Este es mi proyecto personal para aprender. Es un sitio que permite compartir apuntes con amigos.',
-    projectsGiftWhispererTitle: 'Gift Whisperer',
-    projectsGiftWhispererDesc:
-      'Plataforma anónima de intercambio de regalos para amigos y familia. Crea listas de deseos, reclama regalos y mantén la sorpresa.',
+      'Plataforma full-stack de estudio colaborativo con Supabase Postgres, seguridad a nivel de fila, búsqueda de texto completo y OAuth de Google/Discord.',
+    projectsCoffeeChatTitle: 'CoffeeChat',
+    projectsCoffeeChatDesc:
+      'Un proyecto de cliente de pago. Una PWA en Next.js App Router con Neon Postgres, Drizzle ORM, Better Auth, MapKit JS y un asistente con Anthropic.',
     projectsPortfolioTitle: 'Portafolio Personal',
     projectsPortfolioDesc:
       'Mi portafolio oficial que muestra proyectos y habilidades como desarrollador full-stack.',
@@ -419,10 +434,35 @@ export const translations = {
       'Bot de Discord que rastrea actividad en canales de voz y crea tablas de clasificación. Incluye seguimiento en tiempo real y rankings.',
     projectsJJAYCompanionTitle: 'JJAY Campus Companion',
     projectsJJAYCompanionDesc:
-      'App iOS para consumidores publicada en el Apple App Store, sirviendo a miles de estudiantes de John Jay College en clases, eventos, mapas del campus y reseñas de profesores.',
+      'Una app iOS de producción en el App Store para estudiantes de John Jay College. Clases, eventos, mapas del campus y reseñas de profesores.',
+
+    // IT & Systems
+    sysadmin: 'Sysadmin',
+    itRoleTitle: 'Especialista de Soporte de TI',
+    itRolePeriod: 'NOV 2022 TO PRESENT',
+    itRoleOrg: 'GUTTMAN · CUNY',
+    itRoleBlurb:
+      'Ascendido de Help Desk Assistant a College Assistant / IT Ambassador en junio de 2024.',
+    itItemEndpoint:
+      'Gestión de endpoints: imagen y despliegue de 200+ máquinas Windows vía SCCM y PXE boot, incluyendo configuración post-imagen y despliegue de software',
+    itItemAD: 'Active Directory: usuarios, grupos, GPOs',
+    itItemM365:
+      'Administración de Microsoft 365 y Exchange Online, apoyo a una migración de tenant de correo estudiantil',
+    itItemEmail:
+      'Infraestructura de correo: firma DKIM y configuración DNS CNAME en CampusGroups, Constant Contact y Slate. Diagnóstico de relay Proofpoint, whitelist de IPs de envío, corrección de registros MX',
+    itItemVuln:
+      'Gestión de vulnerabilidades: revisión Tenable/Nessus y coordinación de remediación',
+    itItemPowerShell: 'Scripts de PowerShell para automatización administrativa',
+    itItemNetwork:
+      'Redes: migración de VLAN y trabajo en puertos de switch, VPN, DNS, DHCP',
+    itItemServiceNow:
+      'ServiceNow: ciclo completo de tickets y dashboards de reportes para colas de TI',
+    itItemMfaGuide:
+      'Redacté la guía de entrenamiento CUNY Login MFA Tool usada por el personal de mesa de ayuda',
+    itItemVendor: 'Evaluación de proveedores (Varonis data security)',
 
     // Footer
-    footerCopyright: '© 2025 Imanol Aracena. Todos los derechos reservados.',
+    footerCopyright: '© 2026 Imanol Aracena. Todos los derechos reservados.',
 
     // Common
     loading: 'Cargando...',

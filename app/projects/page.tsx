@@ -14,7 +14,7 @@ export default function ProjectsPage() {
       <div className='container-page pt-16 pb-16'>
         <div className='space-y-10'>
           <header className='text-center space-y-4'>
-            <p className='mono-label'>— {t('projects')}</p>
+            <p className='mono-label'>{t('projects')}</p>
             <h1 className='display-lg'>
               {t('memorableProjects').split(' ')[0]}{' '}
               <span className='text-accent'>
@@ -54,21 +54,15 @@ export default function ProjectsPage() {
               ]}
               description={t('projectsNoteShareDesc')}
               href='https://noteshare.us/'
-              span='span-6'
+              span='span-12'
             />
 
             <ProjectCard
-              title={t('projectsGiftWhispererTitle')}
-              tags={[
-                'React',
-                'TypeScript',
-                'Express',
-                'Prisma',
-                'PostgreSQL',
-              ]}
-              description={t('projectsGiftWhispererDesc')}
-              href='https://christmas-list-peach.vercel.app/'
-              span='span-6'
+              title={t('projectsCoffeeChatTitle')}
+              tags={['Next.js', 'React', 'Tailwind', 'Neon', 'Drizzle', 'PWA']}
+              description={t('projectsCoffeeChatDesc')}
+              href='#'
+              span='span-12'
             />
           </div>
         </div>
