@@ -744,7 +744,7 @@ const useProjects = (): Project[] => {
       },
       {
         title: t('projectsNoteShareTitle'),
-        period: 'MAR 2025 TO ONGOING',
+        period: 'MAR 2025 TO DEC 2025',
         blurb: t('projectsNoteShareDesc'),
         tags: [
           'Next.js',
