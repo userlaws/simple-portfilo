@@ -54,3 +54,8 @@ Thumbs.db
 
 # Local documents
 Resume.pdf
+
+# Agent / AI tooling (never commit)
+.agents/
+.claude/
+skills-lock.json
